@@ -243,7 +243,7 @@ function startAdmin(){authed=true;lastSig='';firstPoll=true;D.msgs=[];D.leads=[]
 function startStudent(){lastSig='';firstPoll=true;D.msgs=[];loadPublic().catch(()=>{});poll()}
 async function initCloud(){CLOUD={api:true};setNet('conn');if(S.cid&&!/^[A-Za-z0-9_-]{16,64}$/.test(String(S.cid)))S.cid=null;
  try{await loadPublic();setNet('on')}catch(e){console.warn(e);setNet('err')}
- if(API.tok())startAdmin();else poll()}
+ try{const s=await API.req('GET','/api/auth/get-session');if(s?.user?.email==='kesos23@admin.invalid'){startAdmin();return}}catch{}poll()}
 addEventListener('visibilitychange',()=>{if(!document.hidden)poll()});
 
 /* ---------- Konten interaktif ---------- */
@@ -480,10 +480,9 @@ const x={id:newId(),type:'Eksplorasi',name:$('#e1').value||'Tanpa nama',contact:
 
 /* ---------- Admin ---------- */
 let authed=false;
-function loginDlg(){open_(`<h3>Masuk Admin</h3><label for="lu">Username</label><input id="lu" autocomplete="username"><label for="lp">Password</label><input id="lp" type="password" autocomplete="current-password"><label for="lm">Email admin</label><input id="lm" type="email" autocomplete="email" value="${esc(LS.get('admEmail',''))}" placeholder="admin@gmail.com" onkeydown="if(event.key==\'Enter\')login()"><small>📧 Email ini akan menerima notifikasi setiap ada siswa yang curhat di Ruang Aman.</small><p id="le" class="note hide">Username atau password salah.</p><p><button onclick="login()">Masuk</button> <button class="alt" onclick="$('#dlg').close()">Batal</button></p>`)}
-async function login(){const le=$('#le');le.classList.add('hide');try{const em=$('#lm').value.trim();if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){le.textContent='Masukkan email admin yang valid untuk menerima notifikasi curhat dari siswa.';le.classList.remove('hide');$('#lm').focus();return}
-const r=await API.req('POST','/api/admin/login',{u:$('#lu').value,p:$('#lp').value,email:em});LS.set('admEmail',em);try{sessionStorage.setItem('rs_adm',r.token)}catch(e){}$('#dlg').close();startAdmin()}catch(e){le.textContent=e.message||'Gagal masuk.';le.classList.remove('hide')}}
-function logout(){authed=false;try{sessionStorage.removeItem('rs_adm')}catch(e){}D.leads=[];mode('pub');startStudent()}
+function loginDlg(){open_(`<h3>Masuk Admin</h3><label for="lu">Username</label><input id="lu" autocomplete="username"><label for="lp">Password</label><input id="lp" type="password" autocomplete="current-password"><p id="le" class="note hide">Username atau password salah.</p><p><button onclick="login()">Masuk</button> <button class="alt" onclick="$('#dlg').close()">Batal</button></p>`)}
+async function login(){const le=$('#le');le.classList.add('hide');try{await API.req('POST','/api/auth/sign-in/email',{email:$('#lu').value.trim().toLowerCase()+'@admin.invalid',password:$('#lp').value});await API.req('GET','/api/admin/state');$('#dlg').close();startAdmin()}catch(e){le.textContent=e.code===401?'Username atau password salah.':e.code===429?'Terlalu banyak percobaan. Coba lagi nanti.':'Login belum tersedia. Periksa konfigurasi sesi admin.';le.classList.remove('hide')}}
+async function logout(){try{await API.req('POST','/api/auth/sign-out',{})}catch{toast('Gagal keluar. Silakan coba lagi.');return}location.reload()}
 function hdr(){const a=D.msgs.filter(m=>m.unreadA).length,u=D.msgs.filter(m=>m.mine&&m.unreadU).length;$('#admBtn').textContent=pubMode?'Admin'+(authed&&a?' ('+a+' baru)':''):'← Situs';document.title=(authed&&a?'('+a+') ':'')+'RUANG SETARA';const nb=$('#navaman');if(nb)nb.innerHTML='Ruang Aman'+(u?' <span class="dot">'+u+'</span>':'')}
 const who=m=>m.anon?'Anonim':esc(m.name||'Pengguna');
 function inboxHtml(){const l=[...D.msgs].reverse(),c=D.msgs.find(m=>m.id==S.ac)||l[0];if(!c)return'<p>Belum ada pesan. Pesan dari siswa akan muncul di sini secara otomatis.</p>';if(c.unreadA&&!pubMode){c.unreadA=false;C.conv(c.id,{unreadA:false});setTimeout(hdr,0)}setTimeout(()=>{const a=$('#ac');if(a)a.scrollTop=1e9});
