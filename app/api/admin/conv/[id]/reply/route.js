@@ -28,7 +28,7 @@ export async function POST(request, {params}) {
         ) recent
       ), status='Replied', unread_a=false, unread_u=true, updated_at=now()
       WHERE c.id=$2 AND EXISTS (SELECT FROM admin_session) RETURNING c.id,c.email
-    ) SELECT EXISTS (SELECT FROM admin_session) AS authorized, saved.id,saved.email FROM (SELECT 1) anchor LEFT JOIN saved ON true`,
+    ) SELECT EXISTS (SELECT FROM admin_session) AS authorized, saved.id,saved.email, EXISTS (SELECT FROM settings WHERE key='reply-email:' || saved.id AND value=to_jsonb(saved.email)) AS include_reply FROM (SELECT 1) anchor LEFT JOIN saved ON true`,
       [token, id, JSON.stringify({f:'a', t, time:String(b.time ?? '').slice(0,20), ts:Date.now()})])
     row = result.rows[0]
   } catch {
@@ -37,6 +37,6 @@ export async function POST(request, {params}) {
   }
   if (!row.authorized) return error('Sesi admin berakhir, silakan masuk lagi.', 401)
   if (!row.id) return error('Percakapan tidak ditemukan.', 404)
-  const notification = await notifyStudent(row.email).catch(() => {console.warn('student_mail: pengiriman gagal');return 'failed'})
+  const notification = await notifyStudent(row.email, row.include_reply === true ? t : '').catch(() => {console.warn('student_mail: pengiriman gagal');return 'failed'})
   return Response.json({ok:true, notification})
 }
