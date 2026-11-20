@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>RUANG SETARA</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FFFBF5;--ink:#33304A;--sage:#FFC07A;--teal:#C3D6EF;--lav:#DDD3EE;--yel:#FFE6B8;--card:#fff;--line:#eadfd6;--acc:#4A4F9E;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1rem/1.65 Inter,system-ui,sans-serif;transition:background .3s,color .3s}
+h1,h2,h3,button,.btn{font-family:Poppins,system-ui,sans-serif}h1,h2,h3{line-height:1.25;margin:.2em 0 .4em}
+h1{font-size:clamp(2rem,5vw,3.2rem)}h2{font-size:clamp(1.5rem,3.5vw,2.1rem)}
+a{color:var(--acc)}:focus-visible{outline:3px solid #7a5cd1;outline-offset:2px}
+header{position:sticky;top:0;z-index:10;background:var(--bg);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;gap:10px;max-width:1100px;margin:auto;padding:10px 16px;flex-wrap:wrap}
+.logo{font:700 1.15rem Poppins;color:var(--acc);text-decoration:none;margin-right:auto}
+nav{display:flex;gap:4px;flex-wrap:wrap}nav a{padding:6px 10px;border-radius:99px;text-decoration:none;color:var(--ink);font-size:.92rem;transition:background .2s}nav a:hover{background:var(--lav)}
+#burger{display:none}
+@media(max-width:860px){#burger{display:block}nav{display:none;width:100%;flex-direction:column}nav.open{display:flex}}
+.btn,button{border:0;border-radius:99px;padding:10px 20px;font-weight:600;font-size:.95rem;cursor:pointer;background:var(--sage);color:#1d2a26}
+.btn.alt,button.alt{background:transparent;border:2px solid var(--sage);color:var(--ink)}
+button.sm{padding:5px 12px;font-size:.82rem}button.danger{background:#f3c6c0;color:#5a1d16}
+section{max-width:1100px;margin:auto;padding:56px 16px}
+.hero{display:grid;grid-template-columns:1.2fr 1fr;gap:32px;align-items:center}
+@media(max-width:760px){.hero{grid-template-columns:1fr}}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:12px}.tile{border-radius:24px;padding:28px;font-size:2.6rem;text-align:center;color:#303B38}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:20px}
+.chip{padding:6px 14px;border-radius:99px;border:2px solid var(--line);background:none;color:var(--ink);font-weight:500}.chip[aria-pressed=true]{background:var(--lav);border-color:var(--acc)}
+.badge{display:inline-block;padding:2px 10px;border-radius:99px;font-size:.78rem;font-weight:600;background:var(--yel);color:#303B38}
+.rc{background:linear-gradient(135deg,#FFE6B8,#F6C9D8,#DDD3EE);border-radius:28px;padding:36px;min-height:240px;color:var(--ink)}
+.rc h3{font-size:1.6rem}
+label{display:block;font-weight:500;margin:12px 0 4px}
+input,select,textarea{width:100%;padding:10px 12px;border:2px solid var(--line);border-radius:12px;background:var(--card);color:var(--ink);font:inherit}
+.q{display:flex;flex-wrap:wrap;gap:10px}.q button{background:var(--card);border:2px solid var(--line);color:var(--ink);font-weight:500;text-align:left}.q button[aria-pressed=true]{background:var(--yel);color:#303B38;border-color:#c9a93d}
+.tabs{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.chat{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:16px;max-height:340px;overflow:auto}
+.m{max-width:85%;padding:10px 14px;border-radius:16px;margin:8px 0;animation:msg .3s ease}.m.u{background:var(--lav);margin-left:auto}.m.a{background:var(--teal)}
+.m small{display:block;opacity:.75}
+.note{background:var(--yel);color:#303B38;border-radius:14px;padding:12px 16px;font-size:.92rem}
+footer{background:#4A4F9E;color:#fff;padding:40px 16px 90px;text-align:center}footer a{color:#fff}
+.adm{max-width:1100px;margin:auto;padding:24px 16px;display:grid;grid-template-columns:190px 1fr;gap:20px}
+@media(max-width:760px){.adm{grid-template-columns:1fr}}
+.side{display:flex;flex-direction:column;gap:6px}.side button{text-align:left;background:var(--card);border:1px solid var(--line);color:var(--ink);border-radius:12px}.side button[aria-current=true]{background:var(--lav);border-color:var(--acc)}
+.row{display:flex;gap:8px;align-items:center;justify-content:space-between;flex-wrap:wrap;padding:10px 0;border-bottom:1px solid var(--line)}
+.stat{font:700 2rem Poppins;color:var(--acc)}
+dialog{border:0;border-radius:20px;max-width:520px;width:92%;background:var(--card);color:var(--ink);padding:20px}dialog::backdrop{background:#0008}
+.hide{display:none!important}.sr{position:absolute;left:-9999px}
+.c1{background:#FFE9CC}.c2{background:#F6D5DF}.c3{background:#D9E4F5}.ic{font-size:2rem}.card{box-shadow:0 2px 12px #4a4f9e14}h2{color:var(--acc)}
+.fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:24px;max-width:1100px;margin:auto auto 20px;text-align:left}.fl{font:700 1.3rem Poppins}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(84px + env(safe-area-inset-bottom,0px));background:#4A4F9E;color:#fff;padding:12px 20px;border-radius:99px;z-index:30;box-shadow:0 6px 20px #0003;max-width:90%;animation:msg .3s ease}
+.dot{background:#B31A15;color:#fff;border-radius:99px;padding:0 8px;font-size:.75rem;font-weight:600}
+.inb{display:grid;grid-template-columns:230px 1fr;gap:14px}@media(max-width:760px){.inb{grid-template-columns:1fr}}
+.conv{display:block;width:100%;text-align:left;border-radius:14px;margin-bottom:6px;background:var(--card);border:1px solid var(--line);color:var(--ink);font-family:Inter;font-weight:400}.conv[aria-current=true]{background:var(--lav);border-color:var(--acc)}
+.av{width:64px;height:64px;border-radius:50%;display:grid;place-items:center;font:700 1.4rem Poppins;background:var(--lav);margin-bottom:8px}
+.warm{background:linear-gradient(135deg,#FFE6B8,#F6D5DF 55%,#DDD3EE);border-radius:28px;padding:28px}
+table{width:100%;border-collapse:collapse;font-size:.9rem}td,th{border-bottom:1px solid var(--line);padding:8px;text-align:left;vertical-align:top}.tw{overflow-x:auto}
+
+/* ===== Mode tampilan (aksesibilitas) ===== */
+:root[data-theme=dark]{--bg:#1c1a29;--ink:#eeeaf6;--card:#272439;--line:#3b3754;--acc:#b8bcf7;--lav:#3c3760;--teal:#2c4262;--yel:#54461f}
+[data-theme=dark] .warm,[data-theme=dark] .rc,[data-theme=dark] .c1,[data-theme=dark] .c2,[data-theme=dark] .c3{--ink:#33304A;--card:#fff;--line:#eadfd6;--yel:#FFE6B8;--lav:#DDD3EE;--acc:#4A4F9E;color:#33304A}
+[data-theme=dark] .badge,[data-theme=dark] .note,[data-theme=dark] .q button[aria-pressed=true]{color:var(--ink)}
+[data-theme=dark] footer{background:#121020}
+[data-contrast=hi]{--ink:#000;--line:#000;--acc:#141a8c;--bg:#fff;--card:#fff}
+[data-contrast=hi][data-theme=dark]{--ink:#fff;--line:#fff;--acc:#ffe14d;--bg:#000;--card:#000}
+[data-contrast=hi] a{text-decoration:underline}
+[data-read=easy] body{letter-spacing:.03em;word-spacing:.12em;line-height:1.9}[data-read=easy] p{max-width:70ch}
+
+/* ===== Interaksi ===== */
+#prog{position:fixed;top:0;left:0;height:4px;width:0;background:linear-gradient(90deg,#FFC07A,#F6C9D8,#4A4F9E);z-index:40}
+.rv{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}.rv.in{opacity:1;transform:none}
+nav a.on{background:var(--lav);font-weight:600}
+.card{transition:transform .2s,box-shadow .2s}article.card:hover,.grid>.card:hover{transform:translateY(-3px);box-shadow:0 10px 26px #4a4f9e26}
+button,.btn{transition:transform .15s,filter .15s,background .2s}button:hover:not(:disabled),.btn:hover{filter:brightness(1.05)}button:active:not(:disabled),.btn:active{transform:scale(.96)}
+.btn{display:inline-block;text-decoration:none}
+.tile{display:block;text-decoration:none;transition:transform .25s}.tile:hover,.tile:focus-visible{transform:scale(1.05) rotate(-2deg)}
+.tile span{display:inline-block;animation:float 5s ease-in-out infinite}.tile:nth-child(2) span{animation-delay:-1.3s}.tile:nth-child(3) span{animation-delay:-2.6s}.tile:nth-child(4) span{animation-delay:-3.9s}
+.tile small{display:block;font:600 .85rem Poppins,sans-serif;margin-top:4px}
+@keyframes float{50%{transform:translateY(-8px)}}@keyframes msg{from{opacity:0;transform:translateY(6px)}}
+.hint{font-size:.85rem;opacity:.8;margin-top:12px}
+.rc{touch-action:pan-y}.rc.pop{animation:pop .4s ease}@keyframes pop{from{opacity:.2;transform:translateY(10px) scale(.97)}}
+.dotn{width:10px;height:10px;padding:0;border-radius:99px;background:var(--line);margin:0 3px;vertical-align:middle;transition:width .25s,background .25s}.dotn[aria-current=true]{width:26px;background:var(--acc)}
+.cf{position:fixed;top:-14px;width:9px;height:14px;z-index:60;pointer-events:none;animation:fall linear forwards}@keyframes fall{to{transform:translate(var(--dx,0),105vh) rotate(760deg)}}
+.breath{width:150px;height:150px;border-radius:50%;margin:34px auto;background:radial-gradient(circle,#FFE6B8,#F6C9D8 60%,#DDD3EE);display:grid;place-items:center;font:600 1rem Poppins,sans-serif;color:#33304A;transition:transform 4s ease-in-out;box-shadow:0 0 0 14px #DDD3EE55;text-align:center;padding:10px}.breath.big{transform:scale(1.4)}
+.meter{height:10px;background:var(--line);border-radius:99px;overflow:hidden;margin:8px 0}.meter i{display:block;height:100%;background:linear-gradient(90deg,#FFC07A,#F6C9D8,#4A4F9E);border-radius:99px;transition:width .6s ease}
+.opt{display:block;width:100%;text-align:left;margin:8px 0;background:var(--card);border:2px solid var(--line);color:var(--ink);font-weight:500}.opt:hover:not(:disabled){border-color:var(--acc)}.opt:disabled{cursor:default}
+.opt.ok{background:#d6f0dd;border-color:#3c9a5f;color:#173d24}.opt.no{background:#f8d9d5;border-color:#c0504a;color:#5a1d16}
+.step{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;border:2px solid var(--line);border-radius:16px;margin:8px 0;background:var(--card);cursor:pointer;font-weight:400;transition:background .2s,border-color .2s}
+.step.done{background:var(--lav);border-color:var(--acc)}.step.done b{text-decoration:line-through;text-decoration-color:var(--acc)}.step input{width:22px;height:22px;margin-top:2px;accent-color:var(--acc);flex:none}
+.mood{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}.mood button{background:var(--card);border:2px solid var(--line);color:var(--ink);padding:8px 12px;border-radius:16px;font-weight:500;display:flex;flex-direction:column;align-items:center;min-width:74px}
+.mood button span{font-size:1.7rem;line-height:1.2}.mood button[aria-pressed=true]{background:var(--lav);border-color:var(--acc)}
+.typing span{display:inline-block;width:8px;height:8px;border-radius:50%;background:currentColor;opacity:.5;margin:0 2px;animation:bl 1s infinite}.typing span:nth-child(2){animation-delay:.15s}.typing span:nth-child(3){animation-delay:.3s}@keyframes bl{50%{opacity:.1;transform:translateY(-3px)}}
+.fchip{padding:3px 10px;font:500 .78rem Inter,sans-serif;border-radius:99px;background:var(--lav);color:var(--ink);margin:3px 2px}
+.st-OPEN{background:#d6f0dd;color:#173d24}.st-CLOSED{background:#f3c6c0;color:#5a1d16}.st-UPDATED{background:#C3D6EF;color:#1f2f4a}
+.heart{float:right;margin:-4px -4px 0 8px;font-size:1rem!important}
+#a11yBtn{position:fixed;left:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:25;width:54px;height:54px;padding:0;font-size:1.5rem;background:var(--acc);color:#fff;box-shadow:0 6px 18px #0003}
+[data-theme=dark] #a11yBtn{color:#1c1a29}
+#a11y{position:fixed;left:16px;bottom:calc(80px + env(safe-area-inset-bottom,0px));z-index:25;background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:18px;padding:16px;width:min(300px,calc(100vw - 32px));box-shadow:0 10px 30px #0003;animation:msg .2s ease}
+.arow{display:flex!important;justify-content:space-between;align-items:center;gap:10px;margin:10px 0!important;font-weight:400!important}.arow input{width:22px;height:22px;accent-color:var(--acc);flex:none}
+.net{font-size:.78rem;opacity:.85;white-space:nowrap}
+#toTop{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:25;width:48px;height:48px;padding:0;box-shadow:0 6px 18px #0003}
+.uimg{display:block;width:calc(100% + 40px);margin:-20px -20px 14px;height:170px;object-fit:cover;border-radius:20px 20px 0 0;background:var(--lav)}
+.upimg{display:grid;grid-template-columns:120px 1fr;gap:12px;align-items:start}.upimg img{width:120px;height:90px;object-fit:cover;border-radius:12px;border:1px solid var(--line)}.upimg input[type=file]{padding:6px;border-style:dashed}
+.av.ph{width:110px;height:110px;overflow:hidden;border:3px solid #fff;box-shadow:0 4px 14px #4a4f9e26}.av img{width:100%;height:100%;object-fit:cover;display:block}
+.prof{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:0 14px}.pinfo{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.88rem;margin:0 0 10px}.pinfo span{background:var(--bg);border:1px solid var(--line);border-radius:99px;padding:2px 10px}
+.bg{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:24px 28px;margin-bottom:28px;box-shadow:0 2px 12px #4a4f9e14}.bg p{max-width:75ch}
+.ast{font-size:.8rem;opacity:.8;margin:-6px 0 6px 0}
+.thumb{width:44px;height:32px;object-fit:cover;border-radius:6px;vertical-align:middle;margin-right:8px}
+.lvl{margin:14px 0 12px;padding:14px 16px;border-radius:16px;background:var(--bg);border:1px solid var(--line)}.lvl label{margin:0 0 8px}
+.lvn{display:inline-block;min-width:2.6em;text-align:center;font:700 1.3rem Poppins,sans-serif;color:var(--acc);margin-left:6px}
+#mlv{--p:50%;-webkit-appearance:none;appearance:none;height:12px;padding:0;border:0;border-radius:99px;background:linear-gradient(90deg,#FFC07A,#F6C9D8 50%,#4A4F9E) 0/var(--p) 100% no-repeat,var(--line);cursor:pointer}
+#mlv::-webkit-slider-thumb{-webkit-appearance:none;width:26px;height:26px;border-radius:50%;background:#fff;border:3px solid var(--acc);box-shadow:0 2px 8px #0003}
+#mlv::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:#fff;border:3px solid var(--acc);box-shadow:0 2px 8px #0003}
+.lvs{display:flex;justify-content:space-between;font-size:.78rem;opacity:.75;margin-top:6px}
+[data-motion=off] .rv{opacity:1;transform:none}[data-motion=off] *,[data-motion=off] *::before,[data-motion=off] *::after{animation:none!important;transition:none!important}[data-motion=off]{scroll-behavior:auto}
+</style></head><body>
+<a class="sr" href="#main" onfocus="this.style.left='8px'" onblur="this.style.left='-9999px'">Lewati ke konten</a>
+<div id="prog" aria-hidden="true"></div>
+<header><div class="bar">
+<a class="logo" href="#" onclick="mode('pub')">RUANG SETARA</a>
+<nav id="nav" aria-label="Menu utama"><a href="#hak">Kenali Hakmu</a><a href="#potensi">Temukan Potensimu</a><a href="#jalan">Perjalananku</a><a href="#kampus">Kampus &amp; Beasiswa</a><a href="#cerita">Cerita &amp; Aspirasi</a><a id="navaman" href="#aman" onclick="readU()">Ruang Aman</a><a href="#tim">Akses Informasi</a></nav>
+<span id="net" class="net" aria-live="polite"></span>
+<button class="sm alt" id="admBtn" onclick="mode(pubMode?'adm':'pub')">Admin</button>
+<a class="btn" href="#jalan" onclick="mode('pub')">Mulai Sekarang</a>
+<button id="burger" class="sm alt" aria-label="Buka menu" onclick="$('#nav').classList.toggle('open')">☰</button>
+</div></header>
+<main id="main"></main><div id="admin" class="hide"></div>
+<dialog id="dlg"></dialog><div id="toast" class="toast hide" role="status" aria-live="polite"></div>
+<footer id="foot"></footer>
+
+<button id="a11yBtn" aria-expanded="false" aria-controls="a11y" aria-label="Pengaturan aksesibilitas" title="Pengaturan aksesibilitas" onclick="a11yT()">💬</button>
+<div id="a11y" style="max-height:calc(100dvh - 6rem);overflow-y:auto" class="hide" role="region" aria-label="Pengaturan aksesibilitas">
+<b style="font-family:Poppins">Pengaturan Tampilan</b>
+<div class="arow"><span>Ukuran teks <small id="fszv">100%</small></span><span><button class="sm alt" onclick="fs(-1)" aria-label="Perkecil teks">A−</button> <button class="sm alt" onclick="fs(1)" aria-label="Perbesar teks">A+</button></span></div>
+<label class="arow" for="opDark"><span>🌙 Mode gelap</span><input type="checkbox" id="opDark" onchange="setOpt('theme',this.checked?'dark':'light')"></label>
+<label class="arow" for="opCon"><span>◐ Kontras tinggi</span><input type="checkbox" id="opCon" onchange="setOpt('contrast',this.checked?'hi':'')"></label>
+<label class="arow" for="opRead"><span>📖 Teks lebih renggang</span><input type="checkbox" id="opRead" onchange="setOpt('read',this.checked?'easy':'')"></label>
+<label class="arow" for="opMot"><span>🐢 Kurangi animasi<br><small id="motSt" style="opacity:.8"></small></span><input type="checkbox" id="opMot" onchange="setOpt('motion',this.checked?'off':'on');motToast()"></label>
+<label class="arow" for="opTts"><span>🔊 Ketuk teks untuk dibacakan</span><input type="checkbox" id="opTts" onchange="setOpt('tts',this.checked);if(this.checked)speak('Mode baca aktif. Ketuk teks mana saja untuk mendengarkannya.');else stopSpeech()"></label>
+<div id="speechTools" hidden><div class="arow"><button class="sm alt" onclick="speak(lastSpeech)">Putar</button><button class="sm alt" onclick="pauseSpeech()">Jeda</button><button class="sm alt" onclick="resumeSpeech()">Lanjut</button><button class="sm alt" onclick="stopSpeech()">Stop</button></div><label class="arow">Kecepatan baca <select id="speechRate"><option value="0.8">0,8×</option><option value="1" selected>1×</option><option value="1.2">1,2×</option><option value="1.5">1,5×</option></select></label></div>
+<p style="margin:8px 0 0"><button class="sm alt" onclick="a11yReset()">Atur ulang</button> <button class="sm" onclick="a11yT(false);$('#a11yBtn').focus()">Tutup</button></p>
+</div>
+<button id="toTop" class="hide" aria-label="Kembali ke atas" onclick="scrollTo({top:0,behavior:noMotion()?'auto':'smooth'})">↑</button>
+
+<script>
+/* =====================================================================
+   KONEKSI SERVER — semua isian siswa disimpan di database (Netlify Database)
+   lewat API /api, sehingga langsung masuk ke laptop admin dan bisa dibalas.
+   ===================================================================== */
+const CLOUD_ON=true;let CLOUD=null,pollT=null;
+const API={tok(){try{return sessionStorage.getItem('rs_adm')||''}catch(e){return''}},
+ async req(method,path,data){const h={},t=API.tok();if(data!==undefined)h['Content-Type']='application/json';if(t&&path.startsWith('/api/admin/'))h.Authorization='Bearer '+t;
+  const r=await fetch(path,{method,headers:h,body:data===undefined?undefined:JSON.stringify(data),cache:'no-store'});let j={};try{j=await r.json()}catch(e){}
+  if(!r.ok){const e=new Error(j.error||('HTTP '+r.status));e.code=r.status;throw e}return j}};
+const rid=()=>{const a=new Uint8Array(18);crypto.getRandomValues(a);return Array.from(a,b=>b.toString(16).padStart(2,'0')).join('')};
+const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const today=()=>new Date().toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'});
+const tm=()=>new Date().toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'});
+const CATS=['Hak Pendidikan','Hak Berpendapat','Kepercayaan Diri','Akomodasi','Masa Depan','Self-Advocacy','Semangat'];
+const KINFO0='Untuk info lebih lanjut tentang kampus, jurusan, dan beasiswa, kamu bisa bertanya langsung ke admin di Ruang Aman. Admin akan membantu menjawab dan mengarahkanmu ke langkah yang tepat 💛';
+const ABOUT0='Banyak siswa penyandang disabilitas, termasuk teman-teman dari Sekolah Luar Biasa (SLB), punya mimpi untuk melanjutkan pendidikan ke perguruan tinggi. Namun, informasi tentang hak, kampus yang ramah disabilitas, jurusan yang sudah menerima mahasiswa disabilitas, dan beasiswa masih tersebar dan sulit dijangkau.\n\nRUANG SETARA dibuat sebagai jembatan akses informasi: tempat yang aman, hangat, dan mudah diakses untuk mengenali hak, menemukan potensi, dan menyusun langkah menuju kampus impian. Website ini juga menyediakan Ruang Aman agar siswa bisa bercerita dan didampingi.\n\n(Teks ini bisa diubah oleh admin di menu Akses Informasi.)';
+let n=100,D={
+home:{h:'Setiap Orang Berhak Bermimpi dan Menentukan Masa Depannya.',sub:'Kenali hakmu, temukan potensimu, dan temukan kesempatan yang setara untuk mewujudkan masa depanmu.',tes:'#',kinfo:KINFO0},
+about:{title:'Latar Belakang Pembuatan Website',text:ABOUT0},
+emails:[],
+leads:[],
+team:[{id:1,img:'',name:'Nama Dosen, gelar (contoh)',role:'Dosen Pembimbing',inst:'Program Studi / Universitas (isi)',focus:'Bidang keahlian dan peran di RUANG SETARA (isi)',quote:'Pesan singkat dosen untuk siswa (isi)'},{id:2,img:'',name:'Nama Admin (contoh)',role:'Admin / Pengelola',inst:'Tim RUANG SETARA',focus:'Membalas pesan dan mengelola konten (isi)',quote:'Pesan singkat admin untuk pengunjung (isi)'}],
+foot:{about:'RUANG SETARA membantu siswa penyandang disabilitas mengenali hak, potensi, dan peluang kuliah. (Ubah di Admin)',contact:'Email: (isi nanti) · WhatsApp: (isi nanti)',social:'Instagram: (isi nanti)',privacy:'Data yang kamu kirim hanya dipakai untuk proses dukungan dan tindak lanjut. (Ubah di Admin)',copy:'© 2026 RUANG SETARA. All Rights Reserved.'},
+cards:[
+{id:1,title:'Mimpimu untuk Kuliah Itu Berharga.',msg:'Disabilitas bukan alasan untuk membatasi cita-cita. Kamu berhak mendapatkan kesempatan pendidikan yang setara.',cat:'Hak Pendidikan',cta:'Aku Berhak!',on:true},
+{id:2,title:'Pendapatmu Penting.',msg:'Kamu berhak menyampaikan pendapat, kebutuhan, ketidaksetujuan, dan pilihanmu.',cat:'Hak Berpendapat',cta:'Aku Berani Bersuara.',on:true},
+{id:3,title:'Meminta Akomodasi Bukan Merepotkan.',msg:'Ketika kamu membutuhkan dukungan tertentu untuk belajar, kamu berhak menyampaikan kebutuhan tersebut.',cat:'Akomodasi',cta:'Aku Berhak Mendapat Dukungan.',on:true},
+{id:4,title:'Masa Depanmu Adalah Pilihanmu.',msg:'Kamu berhak menentukan pendidikan, pekerjaan, dan masa depan sesuai dengan keinginan dan potensimu.',cat:'Masa Depan',cta:'Aku Memilih.',on:true},
+{id:5,title:'Kamu Setara, Titik.',msg:'Kamu tidak perlu membuktikan apa pun dulu untuk pantas dihargai. Kamu sudah berharga sejak awal.',cat:'Kepercayaan Diri',cta:'Aku Berharga.',on:true},
+{id:6,title:'Kamu Berhak Bahagia.',msg:'Bahagia bukan hadiah untuk orang tertentu. Tertawa, bermimpi, dan menikmati hidup adalah hakmu juga.',cat:'Semangat',cta:'Aku Boleh Bahagia.',on:true},
+{id:7,title:'Istirahat Itu Boleh.',msg:'Ada hari ketika kamu lelah. Itu manusiawi, bukan kelemahan. Pelan-pelan pun tetap maju.',cat:'Semangat',cta:'Aku Boleh Istirahat.',on:true},
+{id:8,title:'Kamu Tidak Merepotkan.',msg:'Orang yang peduli padamu ingin kamu nyaman. Meminta bantuan adalah tanda kamu mengenal dirimu.',cat:'Self-Advocacy',cta:'Aku Boleh Meminta.',on:true},
+{id:9,title:'Kamu Lebih dari Sebuah Label.',msg:'Kamu bukan diagnosis dan bukan kekurangan. Kamu punya nama, selera, humor, dan mimpi.',cat:'Kepercayaan Diri',cta:'Aku Lebih dari Label.',on:true},
+{id:10,title:'Kamu Layak Disayangi Apa Adanya.',msg:'Kamu tidak harus berubah supaya diterima. Ada tempat untukmu, dan kamu disambut di sini.',cat:'Semangat',cta:'Aku Diterima.',on:true}],
+univ:[
+{id:1,name:'Contoh: Universitas Inklusif A',city:'Bandung',desc:'Data contoh. Ganti lewat Admin.',fac:'Unit Layanan Disabilitas, jalur guiding block, juru bahasa isyarat',jur:'Pendidikan Luar Biasa, Ilmu Komunikasi, Desain Komunikasi Visual',url:'#',upd:today(),on:true},
+{id:2,name:'Contoh: Universitas Inklusif B',city:'Yogyakarta',desc:'Data contoh. Belum terverifikasi.',fac:'Pendamping akademik, materi braille, lift',jur:'Psikologi, Sastra Indonesia, Teknik Informatika',url:'#',upd:today(),on:true}],
+sch:[
+{id:1,name:'Contoh: KIP Kuliah',prov:'Pemerintah',desc:'Data contoh. Cek situs resmi sebelum mendaftar.',dl:'-',status:'OPEN',upd:today()},
+{id:2,name:'Contoh: Beasiswa Yayasan X',prov:'Yayasan',desc:'Data contoh, belum terverifikasi.',dl:'-',status:'COMING SOON',upd:today()}],
+stories:[{id:1,name:'Nama samaran',title:'Bukan Tidak Bisa, Hanya Butuh Kesempatan.',uni:'Universitas contoh',text:'Cerita contoh. Admin dapat mengganti dengan cerita nyata yang sudah disetujui penulisnya.',st:'published',likes:0}],
+msgs:[{id:1,anon:false,mine:false,status:'Replied',unreadA:false,unreadU:false,thread:[{f:'u',t:'Aku ingin kuliah tapi bingung harus mulai dari mana.',time:'09.10'},{f:'a',t:'Hai! Terima kasih sudah cerita. Coba mulai dari menu Kampus & Beasiswa untuk melihat pilihan yang tersedia.',time:'09.20'}]}],
+help:[{id:1,name:'Contoh: Layanan Konseling',type:'Konseling',contact:'-',verified:false},{id:2,name:'Contoh: Organisasi Disabilitas',type:'Pendampingan',contact:'-',verified:false}]};
+
+/* ---------- Penyimpanan (localStorage, per browser) ---------- */
+const LS={get(k,d){try{const v=localStorage.getItem('rs_'+k);return v==null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem('rs_'+k,JSON.stringify(v))}catch(e){}}};
+let D0=JSON.stringify(D);
+const maxId=()=>Math.max(100,...Object.values(D).flatMap(v=>Array.isArray(v)?v.map(x=>+x.id||0):[]));
+if(CLOUD_ON){D.msgs=[];D.stories=[];D.leads=[]}else{const sv=LS.get('D',null);if(sv&&typeof sv=='object')Object.assign(D,sv);n=maxId()}
+const newId=()=>CLOUD_ON?Date.now()*1000+Math.floor(Math.random()*1000):++n;
+const U=LS.get('U',{})||{};
+const S={aff:new Set(U.aff||[]),cat:'Semua',i:0,fav:new Set(U.fav||[]),tab:'k',q:'',city:'Semua',sf:'Semua',aTab:'Overview',cid:U.cid,jr:U.jr||{},note:U.note||'',ufav:new Set(U.ufav||[]),pain:new Set(U.pain||[]),mood:U.mood||'',moodLv:U.moodLv||50,liked:new Set(U.liked||[]),qz:{i:0,score:0,pick:null},anim:0,typing:false,draft:'',ar:'',expDone:false,focus:null};
+let pubMode=true;
+const A=Object.assign({fsz:100,theme:'',contrast:'',read:'',motion:'',tts:false},LS.get('A',{}));
+function saveU(){LS.set('U',{aff:[...S.aff],fav:[...S.fav],cid:S.cid,jr:S.jr,note:S.note,ufav:[...S.ufav],pain:[...S.pain],mood:S.mood,moodLv:S.moodLv,liked:[...S.liked]})}
+function persist(){if(!CLOUD_ON)LS.set('D',D);saveU()}
+
+/* ---------- Sinkronisasi server ---------- */
+const CONTENT=['home','about','team','foot','cards','univ','sch','help','quiz'];
+function fbErr(e){console.error(e);if(e&&e.code==401&&authed){toast('Sesi admin berakhir, silakan masuk lagi.');logout();return}toast('⚠️ Gagal menyimpan ke server: '+((e&&e.message)||e))}
+const enc=encodeURIComponent;
+const C={
+ content(){if(!authed)return;const o={};CONTENT.forEach(k=>o[k]=D[k]);API.req('PUT','/api/admin/content',{data:o}).catch(fbErr)},
+ msg(c,m){if(authed){API.req('POST','/api/admin/conv/'+enc(c.id)+'/reply',{t:m.t,time:m.time}).then(()=>poll()).catch(fbErr);return}
+  return API.req('POST','/api/conv/'+enc(c.id)+'/msg',{t:m.t,time:m.time,anon:!!c.anon,name:c.name||'',age:c.age||'',city:c.city||'',school:c.school||'',email:c.email||'',mood:c.mood||''})},
+ conv(id,fields){if(authed)API.req('PATCH','/api/admin/conv/'+enc(id),fields).catch(fbErr);else if(fields.unreadU===false)API.req('POST','/api/conv/'+enc(id)+'/read').catch(()=>{})},
+ lead(x){return API.req('POST','/api/leads',x).then(r=>{if(authed)poll();return r})},
+ leadSt(id,st){API.req('PATCH','/api/admin/leads/'+enc(id),{st}).catch(fbErr)},
+ story(s){if(authed){API.req('PUT','/api/admin/stories/'+s.id,{story:s}).catch(fbErr);return}return API.req('POST','/api/stories',s)},
+ storyDel(id){API.req('DELETE','/api/admin/stories/'+id).catch(fbErr)},
+ like(id,d){API.req('POST','/api/stories/'+id+'/like',{d}).catch(()=>{})}
+};
+function refresh(){rPub();if(!pubMode)rAdm();rFoot();hdr()}
+function setNet(s){const e=$('#net');if(!e)return;const M={conn:['🟡 Menghubungkan…','Sedang menghubungkan ke server'],on:['🟢 Terhubung','Data tersimpan di server dan tersinkron otomatis'],err:['🔴 Offline','Tidak bisa terhubung ke server, mencoba lagi…']}[s];e.textContent=M[0];e.title=M[1];S.net=s}
+function ping(){try{const a=new(window.AudioContext||window.webkitAudioContext)(),o=a.createOscillator(),g=a.createGain();o.frequency.value=880;g.gain.setValueAtTime(.15,a.currentTime);g.gain.exponentialRampToValueAtTime(.001,a.currentTime+.4);o.connect(g).connect(a.destination);o.start();o.stop(a.currentTime+.4)}catch(e){}}
+function askNotif(){try{if('Notification'in window&&Notification.permission=='default')Notification.requestPermission()}catch(e){}}
+function notifyAdmin(title,body){toast('🔔 '+title+': '+body.slice(0,70));ping();try{if(document.hidden&&'Notification'in window&&Notification.permission=='granted')new Notification('RUANG SETARA — '+title,{body:body.slice(0,120)})}catch(e){}}
+let lastSig='',firstPoll=true,polling=false,pollAgain=false,pubTick=0;
+async function loadPublic(){const r=await API.req('GET','/api/public');if(r.content)Object.assign(D,r.content);S.hasContent=!!r.content;if(!authed)D.stories=r.stories||[];refresh()}
+async function poll(){if(polling){pollAgain=true;return}polling=true;clearTimeout(pollT);
+ try{
+  if(authed){const r=await API.req('GET','/api/admin/state');const msgs=(r.convs||[]).map(m=>({...m,mine:false})),sig=JSON.stringify([msgs,r.leads,r.stories,r.emails,r.mailOn,r.mailError]);
+   if(sig!==lastSig){const seen=new Set(D.msgs.map(m=>m.id+':'+(m.thread||[]).length)),before=D.leads.length;lastSig=sig;D.msgs=msgs;D.leads=r.leads||[];D.stories=r.stories||[];D.emails=r.emails||[];S.mailOn=!!r.mailOn;S.mailError=r.mailError||'';
+    if(!firstPoll){const fresh=D.msgs.filter(m=>m.unreadA&&!seen.has(m.id+':'+m.thread.length));
+     if(fresh.length){const m=fresh[fresh.length-1],z=m.thread[m.thread.length-1]||{t:''};notifyAdmin('Pesan baru dari '+(m.anon?'Anonim':(m.name||'Pengguna')),z.t)}
+     if(D.leads.length>before){const x=D.leads[D.leads.length-1];notifyAdmin('Data '+x.type+' baru dari '+x.name,x.text||'')}}
+    firstPoll=false;refresh()}
+  }else{
+   if(++pubTick%10==0)loadPublic().catch(()=>{});
+   if(S.cid&&!S.sending){const r=await API.req('GET','/api/conv/'+enc(S.cid));const msgs=r.conv?[{...r.conv,mine:true}]:[],sig=JSON.stringify(msgs);
+    if(sig!==lastSig&&!S.sending){const was=!!(D.msgs[0]&&D.msgs[0].mine&&D.msgs[0].unreadU);lastSig=sig;D.msgs=msgs;
+     if(!firstPoll&&msgs[0]&&msgs[0].unreadU&&!was){toast('💌 Admin membalas ceritamu di Ruang Aman');ping()}firstPoll=false;refresh()}}
+  }
+  setNet('on');
+ }catch(e){console.warn(e);if(e.code==401&&authed){polling=false;toast('Sesi admin berakhir, silakan masuk lagi.');logout();return}setNet('err')}
+ polling=false;if(pollAgain){pollAgain=false;return poll()}
+ pollT=setTimeout(poll,document.hidden?15000:(authed?4000:6000))}
+function startAdmin(){authed=true;lastSig='';firstPoll=true;D.msgs=[];D.leads=[];askNotif();if(S.hasContent===false)C.content();mode('adm');poll()}
+function startStudent(){lastSig='';firstPoll=true;D.msgs=[];loadPublic().catch(()=>{});poll()}
+async function initCloud(){CLOUD={api:true};setNet('conn');if(S.cid&&!/^[A-Za-z0-9_-]{16,64}$/.test(String(S.cid)))S.cid=null;
+ try{await loadPublic();setNet('on')}catch(e){console.warn(e);setNet('err')}
+ if(API.tok())startAdmin();else poll()}
+addEventListener('visibilitychange',()=>{if(!document.hidden)poll()});
+
+/* ---------- Konten interaktif ---------- */
+const PAIN=[['bingung harus mulai dari mana untuk kuliah','🧭 Ikuti checklist Perjalananku, langkah demi langkah.','#jalan'],['pendapatku kurang didengarkan','💬 Coba Kuis Kenali Hakmu, lalu baca kartu "Pendapatmu Penting".','#kuis'],['ragu menyampaikan kebutuhan','🤝 Baca Kartu Hangat kategori Akomodasi dan Self-Advocacy.','#hak'],['sulit menemukan kampus ramah disabilitas','🎓 Cari Kampus Inklusif berdasarkan kota atau fasilitas.','#kampus'],['bingung mencari beasiswa','💰 Buka daftar Beasiswa dan cek statusnya.','#kampus'],['butuh seseorang untuk mendengarkan','💛 Ruang Aman siap mendengarkan ceritamu.','#aman']];
+const QUIZ0=[
+{q:'Kalau kamu butuh waktu ujian tambahan karena kondisimu, itu disebut…',o:['Minta keistimewaan','Akomodasi yang layak','Curang','Merepotkan dosen'],a:1,e:'Akomodasi yang layak adalah penyesuaian supaya kamu bisa belajar setara dengan yang lain. Itu hakmu, bukan belas kasihan.'},
+{q:'Undang-undang yang mengatur hak penyandang disabilitas di Indonesia adalah…',o:['UU No. 8 Tahun 2016','UU No. 13 Tahun 2003','UU No. 20 Tahun 2003','Belum ada undang-undangnya'],a:0,e:'UU No. 8 Tahun 2016 tentang Penyandang Disabilitas menjamin hak-hakmu, termasuk hak atas pendidikan.'},
+{q:'Di banyak kampus, tempat bertanya soal dukungan belajar untuk mahasiswa disabilitas disebut…',o:['Badan Eksekutif Mahasiswa','Perpustakaan','Unit Layanan Disabilitas (ULD)','Bagian keuangan'],a:2,e:'ULD membantu mengatur akomodasi seperti juru bahasa isyarat, materi aksesibel, atau pendamping. Tanyakan sebelum mendaftar!'},
+{q:'Siapa yang paling berhak menentukan jurusan kuliahmu?',o:['Hanya orang tua','Ditentukan oleh jenis disabilitas','Guru','Kamu sendiri, dengan dukungan orang sekitar'],a:3,e:'Masa depanmu adalah pilihanmu. Orang sekitar bisa memberi masukan, tapi keputusan tetap milikmu.'},
+{q:'Saat merasa pendapatmu tidak didengar, langkah yang bisa kamu coba adalah…',o:['Diam dan menyerah','Sampaikan dengan tenang dan minta dukungan orang yang kamu percaya','Langsung marah','Menganggap pendapatmu tidak penting'],a:1,e:'Self-advocacy bisa dilatih. Menyampaikan kebutuhan dengan jelas dan mengajak orang yang kamu percaya akan membuat suaramu lebih kuat.'}];
+D.quiz=QUIZ0.map((x,i)=>({id:i+1,q:x.q,o1:x.o[0]||'',o2:x.o[1]||'',o3:x.o[2]||'',o4:x.o[3]||'',a:'ABCD'[x.a],e:x.e,on:true}));
+D0=JSON.stringify({...JSON.parse(D0),quiz:D.quiz});
+/* Kuis dikelola admin (D.quiz). Diubah ke bentuk {q,o[],a,e} hanya untuk pertanyaan aktif yang lengkap. */
+function quizList(){return(D.quiz||[]).filter(x=>x&&x.on!==false&&String(x.q||'').trim()).map(x=>{const raw=[x.o1,x.o2,x.o3,x.o4].map(v=>String(v??'').trim()),ai='ABCD'.indexOf(String(x.a||'A').trim().toUpperCase().charAt(0));
+ const o=[],idx=[];raw.forEach((v,i)=>{if(v){idx.push(i);o.push(v)}});return{q:x.q,o,a:Math.max(0,idx.indexOf(ai)),e:x.e||'',ok:o.length>=2&&idx.includes(ai)}}).filter(x=>x.ok)}
+const JR=[['Kenali hakku','Baca Kartu Hangat dan selesaikan Kuis Kenali Hakmu.','#hak'],['Kenali minat dan bakatku','Ikuti tes minat bakat atau tulis ceritamu di Eksplorasi.','#potensi'],['Catat kebutuhan belajarku','Contoh: juru bahasa isyarat, materi braille, waktu ujian tambahan. Tulis di catatan di bawah.',''],['Pilih 3 kampus impian','Simpan kampus favoritmu dengan tombol ♡.','#kampus'],['Cek beasiswa','Lihat daftar beasiswa dan catat deadline-nya.','#kampus'],['Hubungi ULD kampus','Tanyakan layanan yang tersedia sebelum mendaftar.',''],['Ceritakan rencanaku','Bagikan ke orang yang kamu percaya atau lewat Ruang Aman.','#aman']];
+const MOODS=[['😊','Senang','Senang mendengarnya! Semoga harimu terus menyenangkan.'],['😐','Biasa','Hari yang biasa juga tidak apa-apa. Kamu tetap berharga.'],['😟','Cemas','Rasa cemas itu wajar. Coba tarik napas pelan-pelan sebentar, ya.'],['😢','Sedih','Terima kasih sudah jujur. Kamu boleh cerita di bawah, kami mendengarkan.'],['😤','Kesal','Perasaan kesal itu valid. Menuliskannya bisa membantu melegakan.']];
+const PROMPTS=['Aku bingung memilih jurusan','Aku butuh info beasiswa','Aku ragu menyampaikan kebutuhanku ke sekolah','Aku hanya ingin bercerita'];
+
+const SCH={cards:[['title','Judul'],['msg','Isi afirmasi','t'],['cat','Kategori','s',CATS],['cta','Teks tombol'],['on','Aktif','c']],
+quiz:[['q','Pertanyaan','t'],['o1','Pilihan A'],['o2','Pilihan B'],['o3','Pilihan C (boleh kosong)'],['o4','Pilihan D (boleh kosong)'],['a','Jawaban benar','s',['A','B','C','D']],['e','Penjelasan setelah menjawab','t'],['on','Aktif','c']],
+univ:[['img','Gambar kampus','img'],['name','Nama'],['city','Kota'],['desc','Profil','t'],['fac','Fasilitas (pisahkan dengan koma)'],['jur','Jurusan yang sudah bisa menerima mahasiswa disabilitas (pisahkan dengan koma)','t'],['url','Website'],['on','Tampilkan','c']],
+sch:[['name','Nama'],['prov','Penyelenggara'],['desc','Deskripsi','t'],['dl','Deadline'],['status','Status','s',['OPEN','COMING SOON','CLOSED','UPDATED']]],
+stories:[['name','Nama/samaran'],['title','Judul'],['uni','Universitas'],['text','Cerita','t'],['st','Status','s',['pending','published','rejected','draft']]],
+help:[['name','Nama layanan'],['type','Jenis bantuan'],['contact','Kontak'],['verified','Terverifikasi','c']],
+team:[['img','Foto anggota tim','img'],['name','Nama dan gelar'],['role','Peran (Dosen Pembimbing / Admin / dll)'],['inst','Institusi atau program studi'],['focus','Bidang keahlian dan kontribusi'],['quote','Pesan singkat untuk siswa','t']]};
+const NAME={quiz:'Kuis',cards:'Kartu Hak',univ:'Kampus',sch:'Beasiswa',stories:'Cerita',help:'Help Center',team:'Tim'};
+const TITLE={quiz:'q',cards:'title',univ:'name',sch:'name',stories:'title',help:'name',team:'name'};
+
+/* ---------- Aksesibilitas ---------- */
+/* motion: 'off' = dikurangi, 'on' = sengaja dinyalakan (mengabaikan setelan perangkat), '' = ikuti perangkat */
+const osReduce=()=>{try{return matchMedia('(prefers-reduced-motion: reduce)').matches}catch(e){return false}};
+const noMotion=()=>A.motion=='off'||(A.motion!='on'&&osReduce());
+function motToast(){if(noMotion()){toast('🐢 Animasi dikurangi: ikon berhenti bergerak, konfeti & efek geser dimatikan.')}else toast('✨ Animasi dinyalakan kembali.')}
+function applyA(){const r=document.documentElement;r.style.fontSize=A.fsz+'%';r.dataset.theme=A.theme||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');r.dataset.contrast=A.contrast;r.dataset.read=A.read;r.dataset.motion=noMotion()?'off':'on';
+$('#speechTools').hidden=!A.tts;const m={opDark:r.dataset.theme=='dark',opCon:!!A.contrast,opRead:!!A.read,opMot:noMotion(),opTts:!!A.tts};for(const k in m){const e=document.getElementById(k);if(e)e.checked=m[k]}$('#fszv').textContent=A.fsz+'%';const ms=$('#motSt');if(ms)ms.textContent=noMotion()?'Aktif — tampilan lebih tenang':'Mati — animasi berjalan';if(!noMotion())document.querySelectorAll('#main>.rv').forEach(e=>e.classList.add('in'));LS.set('A',A)}
+function fs(d){A.fsz=Math.min(150,Math.max(85,A.fsz+d*10));applyA()}
+function setOpt(k,v){A[k]=v;applyA()}
+function a11yT(force){const p=$('#a11y'),o=force!=null?force:p.classList.contains('hide');p.classList.toggle('hide',!o);$('#a11yBtn').setAttribute('aria-expanded',o);if(o)p.querySelector('button').focus()}
+function a11yReset(){stopSpeech();$('#speechRate').value='1';Object.assign(A,{fsz:100,theme:'',contrast:'',read:'',motion:'',tts:false});applyA();toast('Pengaturan tampilan dikembalikan ke awal')}
+/* Suara pembaca "ibu peri": lembut, pelan, hangat seperti ibu yang sedang bercerita.
+   - memilih suara PEREMPUAN bahasa Indonesia yang paling natural di perangkat (Gadis/Damayanti/Google), menghindari suara laki-laki
+   - tempo pelan, nada sedikit lebih tinggi & lembut, volume tidak keras
+   - jeda singkat di koma dan jeda panjang di akhir kalimat, seperti sedang mendongeng */
+let VOICE=null;
+function pickVoice(){try{const all=speechSynthesis.getVoices(),vs=all.filter(v=>/^(id|in)\b/i.test((v.lang||'').replace('_','-')));if(!vs.length)return VOICE=null;
+ const sc=v=>{const n=(v.name||'').toLowerCase();return(/natural|neural|enhanced|premium/.test(n)?12:0)+(/gadis|damayanti|female|wanita|perempuan/.test(n)?32:0)+(/google/.test(n)?5:0)+(/ardi|male|pria|laki/.test(n)&&!/female/.test(n)?-20:0)+(v.localService?0:1)};
+ return VOICE=vs.sort((a,b)=>sc(b)-sc(a))[0]}catch(e){return VOICE=null}}
+if('speechSynthesis'in window){pickVoice();try{speechSynthesis.addEventListener('voiceschanged',pickVoice)}catch(e){}}
+let spkGen=0,speechPaused=false,pendingPart=null,lastSpeech='Mode baca aktif. Ketuk teks mana saja untuk mendengarkannya.';
+function stopSpeech(){++spkGen;speechPaused=false;pendingPart=null;window.speechSynthesis?.cancel()}
+function pauseSpeech(){speechPaused=true;window.speechSynthesis?.pause()}
+function resumeSpeech(){speechPaused=false;window.speechSynthesis?.resume();const next=pendingPart;pendingPart=null;if(next)next()}
+function speak(t){if(!('speechSynthesis'in window)){toast('Browser ini belum mendukung fitur suara.');return}stopSpeech();const gen=spkGen,v=VOICE||pickVoice();if(!v){toast('Suara Bahasa Indonesia belum tersedia. Aktifkan suara Indonesia di pengaturan perangkat.');return}lastSpeech=t;speechSynthesis.resume();
+ const clean=String(t).replace(/[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}\u{FE0F}\u{200D}]/gu,'').replace(/[“”"«»*_#→←↑↗]/g,'').replace(/\s+/g,' ').trim();
+ const q=(clean.match(/[^.!?…—,;:]+[.!?…—,;:]*/g)||[]).map(x=>x.trim()).filter(Boolean);
+ const next=i=>{if(gen!=spkGen||i>=q.length)return;if(speechPaused){pendingPart=()=>next(i);return}const part=q[i],u=new SpeechSynthesisUtterance(part);u.lang=v?v.lang:'id-ID';if(v)u.voice=v;
+  u.rate=.97*Number($('#speechRate').value);u.pitch=/\?$/.test(part)?1.12:/!$/.test(part)?1.09:1.04;u.volume=.9;
+  const pause=/[,;:]$/.test(part)?80:/…$/.test(part)?300:160;
+  u.onend=()=>setTimeout(()=>next(i+1),pause);u.onerror=()=>{};speechSynthesis.speak(u)};
+ setTimeout(()=>next(0),120)}
+document.addEventListener('click',e=>{if(!A.tts)return;const el=e.target.closest('h1,h2,h3,p,li,button,a,label,small,.m,td');if(el&&!el.closest('#a11y')&&el.innerText.trim())speak(el.innerText)},true);
+
+/* ---------- Efek ---------- */
+function confetti(k=80){if(noMotion())return;const cols=['#FFC07A','#F6C9D8','#DDD3EE','#C3D6EF','#FFE6B8','#4A4F9E'];for(let i=0;i<k;i++){const e=document.createElement('span');e.className='cf';e.style.left=Math.random()*100+'vw';e.style.background=cols[i%6];e.style.setProperty('--dx',(Math.random()*160-80)+'px');e.style.animationDuration=2+Math.random()*2.5+'s';e.style.animationDelay=Math.random()*.5+'s';if(Math.random()<.5)e.style.borderRadius='50%';document.body.appendChild(e);setTimeout(()=>e.remove(),5500)}}
+function toast(t){const e=$('#toast');e.textContent=t;e.classList.remove('hide');clearTimeout(toast.h);toast.h=setTimeout(()=>e.classList.add('hide'),4500)}
+function go(h){const e=document.querySelector(h);if(e)e.scrollIntoView({behavior:noMotion()?'auto':'smooth'})}
+const SEEN=new Set(),IO='IntersectionObserver'in window?new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');SEEN.add(+e.target.dataset.i);IO.unobserve(e.target)}}),{threshold:.08}):null;
+function onScroll(){const h=document.documentElement,p=h.scrollTop/((h.scrollHeight-h.clientHeight)||1);$('#prog').style.width=Math.min(100,p*100)+'%';$('#toTop').classList.toggle('hide',h.scrollTop<600);
+if(pubMode){let cur='';['hak','kuis','potensi','jalan','kampus','cerita','aman','tim'].forEach(id=>{const e=document.getElementById(id);if(e&&e.getBoundingClientRect().top<130)cur=id});document.querySelectorAll('nav a').forEach(a=>a.classList.toggle('on',a.getAttribute('href')=='#'+cur))}}
+
+function mode(m){if(m=='adm'&&!authed){loginDlg();return}pubMode=m=='pub';$('#main').classList.toggle('hide',!pubMode);$('#admin').classList.toggle('hide',pubMode);hdr();if(pubMode&&D.msgs.some(m=>m.mine&&m.unreadU))toast('💌 Ada balasan baru dari admin di Ruang Aman');$('#nav').classList.remove('open');rAdm();scrollTo(0,0)}
+
+/* ---------- Halaman publik ---------- */
+function activeCards(){return D.cards.filter(c=>c.on&&(S.cat=='Semua'||c.cat==S.cat))}
+function keepForm(root,skip){const k={};root.querySelectorAll('input[id],textarea[id]').forEach(e=>{if(skip.test(e.id))return;k[e.id]=e.type=='checkbox'?e.checked:e.value});return k}
+function restoreForm(k){for(const id in k){const e=document.getElementById(id);if(!e)continue;if(e.type=='checkbox')e.checked=k[id];else e.value=k[id]}}
+function caretEnd(e){try{if(e.setSelectionRange&&typeof e.value=='string')e.setSelectionRange(e.value.length,e.value.length)}catch(_){}}
+function rPub(){const fid=S.focus||(document.activeElement&&document.activeElement.id);S.focus=null;const kept=keepForm($('#main'),/^(mt|sq|jn|jr\d+|mlv)$/);
+const act=activeCards(),L=Math.max(act.length,1);S.i=((S.i%L)+L)%L;const c=act[S.i];
+const done=JR.filter((_,i)=>S.jr[i]).length,sch=D.sch.filter(x=>S.sf=='Semua'||x.status==S.sf);
+$('#main').innerHTML=`
+<section class="hero"><div><span class="badge">Platform inklusif untuk calon mahasiswa</span><h1>${esc(D.home.h)}</h1><p>${esc(D.home.sub)}</p>
+<a class="btn" href="#jalan">Mulai Perjalananku</a> <a class="btn alt" href="#hak">Kenali Hakku</a>
+<p class="hint">💡 Tekan tombol 💬 di pojok kiri bawah untuk memperbesar teks, mode gelap, kontras tinggi, atau mendengarkan teks dibacakan.</p></div>
+<div class="tiles">${[['🎓','Kampus','#kampus','#FFD2A8'],['💌','Ruang Aman','#aman','#F6C9D8'],['🤟','Hakku','#hak','#FFE6B8'],['🌱','Potensiku','#potensi','#C3D6EF']].map(([e,l,h,bg])=>`<a class="tile" href="${h}" style="background:${bg}"><span aria-hidden="true">${e}</span><small>${l}</small></a>`).join('')}</div></section>
+
+<section style="padding-top:0"><h2>Pernah Merasa Kesempatanmu Belum Sepenuhnya Setara?</h2><p>Ketuk yang pernah kamu rasakan, nanti kami tunjukkan langkah yang bisa kamu coba:</p>
+<div class="q">${PAIN.map(([t],i)=>`<button id="pn${i}" aria-pressed="${S.pain.has(i)}" onclick="pain(${i})">${S.pain.has(i)?'✓ ':''}Pernah ${t}</button>`).join('')}</div>
+${S.pain.size?`<div class="card" style="margin-top:16px;animation:msg .3s ease" aria-live="polite"><b>Kamu tidak sendirian. Ini yang bisa kamu coba:</b><ul>${[...S.pain].sort().map(i=>`<li><a href="${PAIN[i][2]}" onclick="return goRec(${i})">${PAIN[i][1]}</a></li>`).join('')}</ul></div>`:''}
+<p>Hambatan pendidikan tidak selalu berasal dari kemampuan seseorang. Sering kali hambatan muncul karena akses informasi, lingkungan, fasilitas, stigma, dan dukungan yang belum tersedia.</p><p><b>RUANG SETARA hadir untuk membantu kamu menemukan informasi, mengenali hak, menyuarakan kebutuhan, dan mengambil langkah menuju masa depanmu.</b></p></section>
+
+<section id="hak"><div class="warm"><span class="badge">Untukmu 💛</span><h2>Kamu Setara. Kamu Berharga. Kamu Berhak Bahagia.</h2><p>Sebelum membaca apa pun di sini, tarik napas pelan-pelan dulu. Kamu tidak perlu membuktikan apa pun untuk pantas dihargai. Mimpimu valid, suaramu penting, dan kamu boleh bahagia sama seperti siapa pun.</p>
+<p><button class="alt" onclick="breathDlg()">🌬️ Latihan napas 1 menit</button></p>
+<p><b>Ketuk satu per satu, lalu ucapkan dalam hati:</b></p>
+<div class="meter" aria-hidden="true"><i style="width:${S.aff.size/5*100}%"></i></div>
+<div class="q">${['Aku setara','Aku berharga','Suaraku penting','Aku boleh bermimpi','Aku berhak bahagia'].map((t,i)=>`<button id="af${i}" aria-pressed="${S.aff.has(t)}" onclick="aff('${t}')">${S.aff.has(t)?'💛 ':''}${t}</button>`).join('')}</div>${S.aff.size==5?'<p class="note" style="margin-top:14px">Kamu hebat. Kamu tidak sendirian, dan kami percaya padamu. 💛</p>':''}</div>
+<h3 style="margin-top:28px">Kartu Hangat untukmu</h3>
+<div class="tabs" role="group" aria-label="Kategori kartu">${['Semua',...CATS].map((k,i)=>`<button class="chip sm" id="ct${i}" aria-pressed="${S.cat==k}" onclick="S.cat='${k}';S.i=0;S.anim=1;rPub()">${k}</button>`).join('')}</div>
+${c?`<div class="rc" id="kartu" aria-live="polite"><span class="badge">${esc(c.cat)}</span><h3>${esc(c.title)}</h3><p>${esc(c.msg)}</p>
+<button id="cCta" onclick="this.textContent='Tersimpan di hatimu ✓';confetti(30)">${esc(c.cta)}</button>
+<button class="alt" id="cFav" aria-pressed="${S.fav.has(c.id)}" onclick="fav(${c.id})">${S.fav.has(c.id)?'♥ Favorit':'♡ Simpan'}</button>
+<button class="alt" id="cSpk" onclick="speakCard(${c.id})">🔊 Dengarkan</button>
+<button class="alt" id="cShr" onclick="shareCard(${c.id})">Bagikan</button></div>
+<p style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:14px"><button id="cPrev" class="alt" onclick="nextCard(-1)">← Sebelumnya</button><button id="cNext" onclick="nextCard(1)">Kartu berikutnya →</button><button id="cRand" class="alt" onclick="shuffleCard()">🎲 Acak</button><span>${S.i+1} dari ${act.length}</span></p>
+<p role="group" aria-label="Pilih kartu">${act.map((_,j)=>`<button class="dotn" id="dn${j}" aria-label="Kartu ${j+1}" aria-current="${j==S.i}" onclick="S.i=${j};S.anim=1;rPub()"></button>`).join('')}</p>
+<p class="hint">Geser kartu ke kiri/kanan di HP, atau pakai tombol panah ← → di keyboard.</p>`:'<p class="note">Belum ada kartu di kategori ini.</p>'}
+<p>Koleksi favoritmu: ${S.fav.size?[...S.fav].map(id=>{const x=D.cards.find(c=>c.id==id);return x?`<button class="chip sm" onclick="jumpCard(${id})">♥ ${esc(x.title)}</button>`:''}).join(' '):'belum ada — ketuk ♡ Simpan pada kartu.'}</p></section>
+
+<section id="kuis"><h2>Kuis: Seberapa Kenal Kamu dengan Hakmu?</h2><p>${quizList().length} pertanyaan singkat. Tidak ada nilai yang dicatat, ini untuk belajar bersama.</p>${quizHtml()}</section>
+
+<section id="potensi"><h2>Setiap Orang Punya Potensi. Yuk, Kenali Dirimu.</h2>
+<div class="grid"><div class="card c1"><div class="ic">📝</div><h3>1. Tes Minat &amp; Bakat</h3><p>Kenali bidang yang kamu sukai dan potensi yang ingin kamu kembangkan.</p><a class="btn" href="${esc(D.home.tes)}" target="_blank" rel="noopener">Ikuti Tes</a></div><div class="card c2"><div class="ic">🧭</div><h3>2. Eksplorasi Masa Depan</h3><p>Temukan pilihan pendidikan dan aktivitas yang sesuai tujuanmu.</p><a class="btn" href="#exp">Tulis Ceritamu</a></div><div class="card c3"><div class="ic">💬</div><h3>3. Konseling</h3><p>Ngobrol dan susun langkahmu lewat Ruang Aman.</p><a class="btn" href="#aman">Ke Ruang Aman</a></div></div>
+<div class="card" style="margin-top:16px" id="exp">${S.expDone?`<h3>Yeay! Kamu sudah mengambil langkah pertama. 🎉</h3><p>Berani mengenali diri sendiri adalah sebuah pencapaian. Website ini hanya menghubungkan ke layanan profesional, bukan memberi diagnosis.</p><a class="btn" href="#jalan">Lanjut ke Perjalananku</a> <button class="alt" onclick="S.expDone=false;rPub()">Tulis lagi</button>`
+:`<h3>Ceritakan apa yang ingin kamu temukan</h3><label for="e1">Nama/nama panggilan</label><input id="e1"><label for="e2">Ceritakan apa yang ingin kamu temukan</label><textarea id="e2" rows="4" placeholder="Tulis minat, hal yang ingin kamu kembangkan, atau kebutuhanmu..."></textarea><label for="e5">Kontak (WhatsApp atau email, boleh dikosongkan)</label><input id="e5"><p><button onclick="expSend()">Mulai Eksplorasi</button></p>`}</div></section>
+
+<section id="jalan"><h2>Perjalananku Menuju Kampus</h2><p>Centang langkah yang sudah kamu lakukan. Progresmu tersimpan otomatis di perangkat ini.</p>
+<div class="meter" aria-hidden="true"><i style="width:${done/JR.length*100}%"></i></div><p aria-live="polite"><b>${done} dari ${JR.length} langkah selesai</b> ${done==JR.length?'— Kamu luar biasa! 🎉':done?'— Terus melangkah, kamu hebat 💪':''}</p>
+${JR.map(([t,d,h],i)=>`<label class="step ${S.jr[i]?'done':''}" for="jr${i}"><input type="checkbox" id="jr${i}" ${S.jr[i]?'checked':''} onchange="jr(${i},this.checked)"><span><b>${i+1}. ${t}</b><br><small>${d}</small>${h?` <a href="${h}">Buka →</a>`:''}</span></label>`).join('')}
+<label for="jn">📒 Catatan kebutuhan &amp; rencanaku</label><textarea id="jn" rows="3" oninput="S.note=this.value;saveU()" placeholder="Contoh: Aku butuh materi dalam format digital dan duduk di depan kelas. Kampus impian: ...">${esc(S.note)}</textarea></section>
+
+<section id="kampus"><h2>Kampus Impian dan Beasiswa untuk Masa Depanmu.</h2>
+<div class="tabs"><button id="tk" class="chip" aria-pressed="${S.tab=='k'}" onclick="S.tab='k';rPub()">🎓 Kampus Inklusif</button><button id="tb" class="chip" aria-pressed="${S.tab=='b'}" onclick="S.tab='b';rPub()">💰 Beasiswa</button></div>
+${S.tab=='k'?`<label for="sq">Cari kampus, kota, jurusan, atau fasilitas</label><input id="sq" type="search" value="${esc(S.q)}" placeholder="contoh: braille, Bandung, Psikologi, juru bahasa isyarat" oninput="S.q=this.value;uGrid()">
+<div class="tabs" style="margin-top:10px" role="group" aria-label="Filter kota">${['Semua',...new Set(D.univ.filter(x=>x.on).map(x=>x.city))].map((k,i)=>`<button class="chip sm" id="cy${i}" aria-pressed="${S.city==k}" data-v="${esc(k)}" onclick="S.city=this.dataset.v;rPub()">${i?'📍 ':''}${esc(k)}</button>`).join('')}</div>
+<div id="ugrid">${uCards()}</div>`
+:`<div class="tabs" role="group" aria-label="Filter status">${['Semua','OPEN','COMING SOON','CLOSED','UPDATED'].map((k,i)=>`<button class="chip sm" id="sf${i}" aria-pressed="${S.sf==k}" onclick="S.sf='${k}';rPub()">${k}</button>`).join('')}</div>
+<div class="grid">${sch.map(x=>`<article class="card"><span class="badge st-${esc(x.status).replace(/\s/g,'-')}">${esc(x.status)}</span><h3>${esc(x.name)}</h3><p>${esc(x.prov)}</p><p>${esc(x.desc)}</p><p><b>Deadline:</b> ${esc(x.dl)}</p><small>Terakhir diperbarui: ${esc(x.upd)}</small></article>`).join('')||'<p>Tidak ada beasiswa dengan status ini.</p>'}</div>`}
+<p class="note" style="margin-top:16px">Informasi di sini belum tentu resmi. Selalu cek situs resmi penyelenggara.</p>
+<div class="card" style="margin-top:14px;display:flex;gap:14px;align-items:center;flex-wrap:wrap;background:linear-gradient(135deg,#FFE6B8,#F6D5DF);color:#33304A"><span style="font-size:2rem" aria-hidden="true">💌</span><p style="flex:1;min-width:220px;margin:0">${esc(D.home.kinfo??KINFO0)}</p><a class="btn" href="#aman" onclick="return askAdmin()">Tanya Admin di Ruang Aman</a></div></section>
+
+<section id="cerita"><h2>Cerita Mereka, Inspirasi untuk Langkahmu.</h2><div class="grid">${D.stories.filter(s=>s.st=='published').map(s=>`<article class="card"><h3>${esc(s.title)}</h3><p>${esc(s.text)}</p><small>${esc(s.name)} · ${esc(s.uni)}</small><p style="margin-bottom:0"><button class="sm alt" id="lk${s.id}" aria-pressed="${S.liked.has(s.id)}" onclick="like(${s.id})">${S.liked.has(s.id)?'💛':'🤍'} Menginspirasi · ${s.likes||0}</button></p></article>`).join('')}</div>
+<p><button onclick="storyDlg()">Bagikan Ceritamu</button></p></section>
+
+<section id="aman"><h2>Kamu Tidak Harus Menghadapi Semuanya Sendirian.</h2><p>Kalau kamu ingin bercerita, menyampaikan kebutuhan, atau mencari dukungan, mulai dari sini.</p>
+<div class="card" style="margin-bottom:16px"><b>Bagaimana perasaanmu hari ini?</b><div class="mood" role="group" aria-label="Perasaan hari ini">${MOODS.map(([e,l],i)=>`<button id="md${i}" aria-pressed="${S.mood==l}" onclick="S.mood=S.mood=='${l}'?'':'${l}';S.moodLv=50;rPub()"><span aria-hidden="true">${e}</span><small>${l}</small></button>`).join('')}</div>
+${S.mood?`<div class="lvl"><label for="mlv">Seberapa kuat rasa <b>${esc(S.mood.toLowerCase())}</b> yang kamu rasakan? <span class="lvn" id="mlvn">${S.moodLv}</span><small>/100</small></label>
+<input type="range" id="mlv" min="1" max="100" step="1" value="${S.moodLv}" aria-valuetext="${S.moodLv} dari 100" oninput="moodLv(this.value)" onchange="saveU()">
+<div class="lvs" aria-hidden="true"><span>1 · sedikit</span><span>50 · sedang</span><span>100 · sangat kuat</span></div>
+<p class="hint" id="mlvt" aria-live="polite" style="margin-top:6px">${moodLvText()}</p></div>
+<p class="note" aria-live="polite" style="margin-bottom:0">${MOODS.find(m=>m[1]==S.mood)[2]} ${S.mood=='Cemas'||S.mood=='Sedih'||S.mood=='Kesal'?'<button class="sm" onclick="breathDlg()">🌬️ Latihan napas</button>':''}</p>`:''}</div>
+${D.msgs.some(m=>m.mine&&m.unreadU)?'<p class="note">💌 Ada balasan baru dari admin. <button class="sm" onclick="readU()">Tandai sudah dibaca</button></p>':''}
+<div class="chat" id="uchat" aria-live="polite"><div class="m a">Hai, selamat datang di Ruang Aman RUANG SETARA. Ada yang ingin kamu ceritakan?</div>${myThread()}${S.typing?'<div class="m a typing" aria-label="Admin sedang mengetik"><span></span><span></span><span></span></div>':''}</div>
+<p style="margin:12px 0 0">Bingung mulai dari mana? Ketuk salah satu:</p><div class="q" style="margin-top:6px">${PROMPTS.map((p,i)=>`<button class="sm" id="pr${i}" onclick="$('#mt').value='${p}';cnt();$('#mt').focus()">${p}</button>`).join('')}</div>
+${profHtml()}
+<label for="mt">Ceritamu</label><textarea id="mt" rows="3" maxlength="1000" oninput="cnt()" onkeydown="if(event.key=='Enter'&&(event.ctrlKey||event.metaKey))send()">${esc(S.draft)}</textarea>
+<div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;align-items:center"><label style="font-weight:400;margin:6px 0"><input type="checkbox" id="an" style="width:auto"> Saya ingin mengirim secara anonim.</label><small id="mtc">${S.draft.length}/1000</small></div>
+<p><button id="sendBtn" onclick="send()">Kirim Cerita</button> <small>atau Ctrl+Enter</small></p>
+<p class="note">Informasi yang kamu berikan digunakan untuk membantu proses dukungan dan tindak lanjut. Pesanmu dikirim ke admin RUANG SETARA dan hanya bisa dibaca olehmu (di perangkat dan browser ini) dan admin. Jangan membagikan informasi sensitif yang tidak diperlukan. Ruang Aman bukan layanan darurat dan bukan pengganti psikolog atau tenaga kesehatan. Jika dalam bahaya, hubungi layanan darurat setempat.</p>
+<h3 style="margin-top:28px">Help Center</h3><div class="grid">${D.help.map(h=>`<article class="card"><h3>${esc(h.name)}</h3><p>${esc(h.type)} · ${esc(h.contact)}</p><span class="badge">${h.verified?'✓ Terverifikasi':'Belum terverifikasi'}</span></article>`).join('')}</div></section>
+
+<section style="text-align:center"><h2>Masa Depanmu, Pilihanmu. Kesempatanmu, Hakmu.</h2><p>Kamu punya hak. Kamu punya potensi. Kamu punya pilihan. Kamu punya suara.</p><a class="btn" href="#jalan">Mulai Perjalananku</a> <a class="btn alt" href="#kampus">Jelajahi RUANG SETARA</a></section>
+<section id="tim"><span class="badge">Akses Informasi</span><div class="bg" style="margin-top:12px"><h2>${esc((D.about||{}).title||'Latar Belakang Pembuatan Website')}</h2>${String((D.about||{}).text||'').split(/\n\s*\n/).filter(x=>x.trim()).map(x=>`<p>${esc(x.trim()).replace(/\n/g,'<br>')}</p>`).join('')}</div>
+<h2>Kenali di Balik RUANG SETARA, Yuk!</h2><p>Kenalan dengan orang-orang yang menyiapkan ruang ini untukmu.</p><div class="grid">${D.team.map(p=>`<article class="card">${imgOk(p.img)?`<div class="av ph"><img src="${esc(p.img)}" alt="Foto ${esc(p.name)}" loading="lazy"></div>`:`<div class="av" aria-hidden="true">${esc(String(p.name||'').trim().charAt(0))}</div>`}<span class="badge">${esc(p.role)}</span><h3>${esc(p.name)}</h3><p>${esc(p.inst)}</p><p><b>Fokus:</b> ${esc(p.focus)}</p><p><i>“${esc(p.quote)}”</i></p></article>`).join('')}</div></section>`;
+restoreForm(kept);afterRender(fid)}
+
+function afterRender(fid){persist();
+if(S.anim){const r=$('#kartu');if(r)r.classList.add('pop');S.anim=0}
+const rc=$('#kartu');if(rc){let x0=null;rc.addEventListener('touchstart',e=>{x0=e.touches[0].clientX},{passive:true});rc.addEventListener('touchend',e=>{if(x0==null)return;const dx=e.changedTouches[0].clientX-x0;x0=null;if(Math.abs(dx)>50)nextCard(dx<0?1:-1)})}
+const ch=$('#uchat');if(ch)ch.scrollTop=ch.scrollHeight;if($('#mlv'))moodLv(S.moodLv);
+if(IO)IO.disconnect();[...$('#main').children].forEach((s,i)=>{s.classList.add('rv');if(SEEN.has(i)||noMotion()||!IO)s.classList.add('in');else{s.dataset.i=i;IO.observe(s)}});
+if(fid){const e=document.getElementById(fid);if(e&&$('#main').contains(e)){e.focus({preventScroll:true});caretEnd(e)}}onScroll()}
+
+const POS=['Senang'];
+function moodLvText(){const v=+S.moodLv||50,pos=POS.includes(S.mood);
+ if(pos)return v>=70?'Wah, rasa senangmu besar sekali hari ini! Simpan momen ini baik-baik 💛':v>=35?'Senang yang hangat. Semoga terus bertahan sepanjang hari 🌤️':'Sedikit senang pun tetap berarti. Pelan-pelan saja 🌱';
+ if(S.mood=='Biasa')return v>=70?'Hari yang tenang dan datar juga tidak apa-apa.':'Kamu sedang di tengah-tengah. Itu wajar sekali.';
+ return v>=75?'Rasanya sedang berat sekali. Kamu tidak harus menanggungnya sendiri. Coba latihan napas atau ceritakan di bawah, ya 💛':v>=40?'Perasaanmu cukup terasa. Beri dirimu waktu sejenak untuk bernapas pelan.':'Perasaannya ada, tapi masih ringan. Terima kasih sudah memperhatikan dirimu.'}
+function moodLv(v){S.moodLv=Math.min(100,Math.max(1,parseInt(v,10)||50));const n=$('#mlvn'),t=$('#mlvt'),r=$('#mlv');if(n)n.textContent=S.moodLv;if(t)t.textContent=moodLvText();if(r){r.setAttribute('aria-valuetext',S.moodLv+' dari 100');r.style.setProperty('--p',(S.moodLv-1)/99*100+'%')}}
+function pain(i){S.pain.has(i)?S.pain.delete(i):S.pain.add(i);rPub()}
+function goRec(i){if(i==4){S.tab='b';S.sf='Semua'}if(i==3)S.tab='k';if(i==2){S.cat='Akomodasi';S.i=0}rPub();go(PAIN[i][2]);return false}
+function aff(t){const was=S.aff.size;S.aff.has(t)?S.aff.delete(t):S.aff.add(t);if(was==4&&S.aff.size==5)confetti();rPub()}
+function fav(id){S.fav.has(id)?S.fav.delete(id):(S.fav.add(id),toast('Disimpan ke koleksi favoritmu ♥'));rPub()}
+function nextCard(d){const L=activeCards().length||1;S.i=(S.i+d+L)%L;S.anim=1;rPub()}
+function shuffleCard(){const L=activeCards().length;if(L<2)return;let j;do j=Math.floor(Math.random()*L);while(j==S.i);S.i=j;S.anim=1;rPub()}
+function jumpCard(id){S.cat='Semua';const j=activeCards().findIndex(c=>c.id==id);if(j>=0){S.i=j;S.anim=1}rPub();go('#kartu')}
+function speakCard(id){const c=D.cards.find(x=>x.id==id);if(c)speak(c.title+' '+c.msg)}
+async function shareCard(id){const c=D.cards.find(x=>x.id==id);if(!c)return;const t=c.title+' — '+c.msg+' (RUANG SETARA)';try{if(navigator.share){await navigator.share({title:c.title,text:t});return}await navigator.clipboard.writeText(t);toast('Kartu disalin, siap dibagikan ✓')}catch(e){}}
+
+function quizHtml(){const QUIZ=quizList(),z=S.qz;if(!QUIZ.length)return'<p class="note">Kuis sedang disiapkan. Nantikan, ya!</p>';if(z.i>=QUIZ.length)return`<div class="card" style="text-align:center"><div class="stat">${z.score}/${QUIZ.length}</div><p>${z.score==QUIZ.length?'Luar biasa! Kamu sudah mengenal hakmu dengan baik 🎉':z.score>=3?'Keren! Kamu sudah di jalur yang tepat 💪':'Tidak apa-apa, belajar itu proses. Yuk coba lagi 💛'}</p><button id="qr" onclick="S.qz={i:0,score:0,pick:null};S.focus='qo0';rPub()">Ulangi Kuis</button></div>`;
+const q=QUIZ[z.i];return`<div class="card"><div class="meter" aria-hidden="true"><i style="width:${(z.i+(z.pick!=null))/QUIZ.length*100}%"></i></div><p><small>Pertanyaan ${z.i+1} dari ${QUIZ.length}</small></p><h3>${esc(q.q)}</h3>${q.o.map((o,j)=>`<button class="opt ${z.pick==null?'':j==q.a?'ok':j==z.pick?'no':''}" id="qo${j}" ${z.pick!=null?'aria-disabled="true"':''} onclick="pick(${j})">${z.pick!=null&&j==q.a?'✓ ':z.pick==j?'✗ ':''}${esc(o)}</button>`).join('')}
+${z.pick!=null?`<p class="note" aria-live="polite">${z.pick==q.a?'✅ Tepat! ':'💡 Belum tepat. '}${esc(q.e)}</p><button id="qn" onclick="quizNext()">${z.i+1<QUIZ.length?'Lanjut →':'Lihat Hasil'}</button>`:''}</div>`}
+function pick(j){const QUIZ=quizList();if(S.qz.pick!=null||!QUIZ[S.qz.i])return;S.qz.pick=j;if(j==QUIZ[S.qz.i].a)S.qz.score++;S.focus='qn';rPub()}
+function quizNext(){const QUIZ=quizList();S.qz.i++;S.qz.pick=null;S.focus=S.qz.i<QUIZ.length?'qo0':'qr';if(S.qz.i>=QUIZ.length){if(S.qz.score==QUIZ.length)confetti();if(S.qz.score>=3&&!S.jr[0]){S.jr[0]=true;toast('Langkah "Kenali hakku" otomatis dicentang ✓')}}rPub()}
+
+function jr(i,v){S.jr[i]=v;const all=JR.every((_,k)=>S.jr[k]);if(v&&all){confetti();toast('Semua langkah selesai! Kamu luar biasa 🎉')}rPub()}
+
+function uList(){return D.univ.filter(x=>x.on&&(S.city=='Semua'||x.city==S.city)&&(x.name+x.city+x.fac+(x.jur||'')).toLowerCase().includes(S.q.toLowerCase()))}
+function uCards(){const u=uList(),sv=D.univ.filter(x=>S.ufav.has(x.id));return`<p aria-live="polite"><small>${u.length} kampus ditemukan${S.q?` untuk “${esc(S.q)}”`:''}</small>${S.q||S.city!='Semua'?` <button class="sm alt" onclick="S.q='';S.city='Semua';rPub()">Hapus filter</button>`:''}</p>
+<div class="grid">${u.map(x=>`<article class="card">${imgOk(x.img)?`<img class="uimg" src="${esc(x.img)}" alt="Foto ${esc(x.name)}" loading="lazy">`:''}<button class="sm alt heart" aria-pressed="${S.ufav.has(x.id)}" aria-label="${S.ufav.has(x.id)?'Hapus dari':'Simpan ke'} kampus impian: ${esc(x.name)}" onclick="ufav(${x.id})">${S.ufav.has(x.id)?'♥':'♡'}</button><h3>${esc(x.name)}</h3><p>📍 ${esc(x.city)}</p><p>${esc(x.desc)}</p><p><b>Fasilitas:</b><br>${String(x.fac||'').split(',').filter(f=>f.trim()).map(f=>`<button class="fchip" data-q="${esc(f.trim())}" title="Cari kampus lain dengan fasilitas ini" onclick="S.q=this.dataset.q;$('#sq').value=S.q;uGrid()">${esc(f.trim())}</button>`).join('')}</p>${String(x.jur||'').split(',').filter(f=>f.trim()).length?`<p><b>🎓 Jurusan yang sudah menerima mahasiswa disabilitas:</b><br>${String(x.jur).split(',').filter(f=>f.trim()).map(f=>`<button class="fchip" style="background:var(--yel);color:#303B38" data-q="${esc(f.trim())}" title="Cari kampus lain dengan jurusan ini" onclick="S.q=this.dataset.q;$('#sq').value=S.q;uGrid()">${esc(f.trim())}</button>`).join('')}</p>`:''}<small>Terakhir diperbarui: ${esc(x.upd)}</small><p><a href="${esc(x.url)}" target="_blank" rel="noopener">Website resmi ↗</a></p></article>`).join('')||'<p>Tidak ada hasil. Coba kata kunci lain 🙂</p>'}</div>
+<p style="margin-top:14px"><b>♥ Kampus impianku:</b> ${sv.length?sv.map(x=>esc(x.name)).join(' · '):'belum ada — ketuk ♡ pada kartu kampus.'}</p>`}
+const imgOk=u=>/^(\/api\/img\/|https:\/\/)/.test(String(u||''));
+function uGrid(){$('#ugrid').innerHTML=uCards();saveU()}
+function ufav(id){S.ufav.has(id)?S.ufav.delete(id):S.ufav.add(id);if(S.ufav.size>=3&&!S.jr[3]){S.jr[3]=true;toast('Langkah "Pilih 3 kampus impian" otomatis dicentang ✓');rPub()}else uGrid()}
+
+function like(id){const s=D.stories.find(x=>x.id==id);if(!s)return;const on=S.liked.has(id);s.likes=Math.max(0,(s.likes||0)+(on?-1:1));on?S.liked.delete(id):S.liked.add(id);C.like(s.id,on?-1:1);rPub()}
+
+function cnt(){const v=$('#mt').value;S.draft=v;$('#mtc').textContent=v.length+'/1000'}
+async function send(){const t=$('#mt').value.trim();if(!t){toast('Tulis ceritamu dulu ya 💛');$('#mt').focus();return}
+if(authed){toast('Kamu sedang masuk sebagai admin. Keluar dulu untuk mencoba sebagai siswa.');return}if(S.sending)return;
+let c=D.msgs.find(m=>m.id==S.cid&&m.mine);const first=!c;
+if(!c){if(!S.cid)S.cid=rid();const P=profVals();if(P.email&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(P.email)){toast('Format email belum benar, contoh: nama@gmail.com');$('#ue').focus();return}
+c={id:S.cid,anon:$('#an').checked,...P,mine:true,status:'New',unreadA:true,unreadU:false,thread:[]};D.msgs=[c]}
+if(S.mood)c.mood=S.mood+' · '+S.moodLv+'/100';const um={f:'u',t,time:tm(),ts:Date.now()};c.thread.push(um);S.draft='';S.sending=true;if(first)S.typing=true;saveU();
+S.focus='mt';rPub();hdr();go('#uchat');
+try{const r=await C.msg(c,um);const done=()=>{S.typing=false;S.sending=false;D.msgs=[{...r.conv,mine:true}];lastSig=JSON.stringify(D.msgs);rPub();hdr()};
+ toast('Ceritamu terkirim ✓ Balasan admin akan muncul di sini.');if(first)setTimeout(done,1500);else done()}
+catch(e){console.error(e);S.sending=false;S.typing=false;c.thread=c.thread.filter(x=>x!==um);if(!c.thread.length)D.msgs=[];S.draft=t;rPub();const m=$('#mt');if(m)m.value=t;toast('⚠️ Pesan belum terkirim: '+(e.message||'periksa koneksi internet')+'. Coba lagi ya.')}}
+function profHtml(){const c=D.msgs.find(m=>m.id==S.cid&&m.mine);
+ if(c)return`<p class="pinfo" aria-label="Data diri yang kamu kirim">${[c.anon?'🙈 Anonim':c.name&&'👤 '+c.name,c.age&&'🎂 '+c.age+' tahun',c.city&&'📍 '+c.city,c.school&&'🏫 '+c.school,c.email?'📧 Notifikasi balasan ke '+c.email:'📧 Tanpa email notifikasi'].filter(Boolean).map(x=>`<span>${esc(x)}</span>`).join('')}</p>`;
+ return`<div class="card" style="margin-top:16px"><b>Kenalan dulu, yuk 💛</b><p class="hint" style="margin-top:4px">Semua boleh dikosongkan. Isi email supaya kamu dapat kabar saat admin membalas ceritamu.</p><div class="prof">
+<div><label for="nm">Nama / nama panggilan</label><input id="nm" autocomplete="nickname" maxlength="80" placeholder="boleh nama samaran"></div>
+<div><label for="ua">Usia</label><input id="ua" type="number" inputmode="numeric" min="5" max="99" placeholder="contoh: 17"></div>
+<div><label for="ud">Domisili (kota/kabupaten)</label><input id="ud" maxlength="120" autocomplete="address-level2" placeholder="contoh: Bandung"></div>
+<div><label for="us">Asal SLB / sekolah</label><input id="us" maxlength="160" placeholder="contoh: SLB Negeri 1 ..."></div>
+<div style="grid-column:1/-1"><label for="ue">Email untuk notifikasi balasan</label><input id="ue" type="email" maxlength="200" autocomplete="email" placeholder="nama@gmail.com"></div></div></div>`}
+function profVals(){const v=id=>(($('#'+id)||{}).value||'').trim();return{name:v('nm'),age:v('ua'),city:v('ud'),school:v('us'),email:v('ue').toLowerCase()}}
+function askAdmin(){if(!S.draft.trim())S.draft='Halo Admin, aku ingin bertanya tentang kampus, jurusan, atau beasiswa: ';S.focus='mt';rPub();setTimeout(()=>go('#aman'),0);return false}
+function myThread(){const c=D.msgs.find(m=>m.id==S.cid);return c?c.thread.map(x=>`<div class="m ${x.f}">${esc(x.t)}<small>${x.auto?'Pesan otomatis · ':x.f=='a'?'Admin · ':''}${x.time}</small></div>`).join(''):''}
+function readU(){D.msgs.forEach(m=>{if(m.mine&&m.unreadU){m.unreadU=false;C.conv(m.id,{unreadU:false})}});hdr();rPub()}
+
+function open_(h){$('#dlg').innerHTML=h;$('#dlg').showModal()}
+let brT;function breathDlg(){open_(`<h3>Tarik Napas Bersama 🌬️</h3><p>Ikuti lingkaran: tarik napas saat membesar, tahan sebentar, lalu hembuskan saat mengecil.</p><div id="br" class="breath" aria-live="polite">Siap?</div><div class="meter" aria-hidden="true"><i id="brm" style="width:0"></i></div><p id="brc" style="text-align:center">0 / 5 putaran</p><p style="text-align:center"><button id="brGo" onclick="breathGo()">Mulai</button> <button class="alt" onclick="$('#dlg').close()">Selesai</button></p>`)}
+function breathGo(){breathStop();let k=0,ph=0;const el=$('#br'),c=$('#brc'),m=$('#brm'),T=[4000,2000,4000],L=['Tarik napas…','Tahan…','Hembuskan…'];$('#brGo').textContent='Ulangi';
+const step=()=>{if(!el.isConnected)return;el.textContent=L[ph];el.classList.toggle('big',ph<2);brT=setTimeout(()=>{ph=(ph+1)%3;if(ph==0){k++;c.textContent=k+' / 5 putaran';m.style.width=k/5*100+'%';if(k==5){el.textContent='Kamu hebat 💛';el.classList.remove('big');return}}step()},T[ph])};step()}
+function breathStop(){clearTimeout(brT)}
+
+function storyDlg(){open_(`<h3>Bagikan Ceritamu</h3><label for="s1">Nama/nama samaran</label><input id="s1"><label for="s0">Judul cerita</label><input id="s0" placeholder="contoh: Langkah Pertamaku ke Kampus"><label for="s2">Universitas dan program studi</label><input id="s2"><label for="s3">Ceritamu</label><textarea id="s3" rows="4" maxlength="2000" oninput="$('#s3c').textContent=this.value.length+'/2000'"></textarea><small id="s3c">0/2000</small><label style="font-weight:400"><input type="checkbox" id="s4" style="width:auto"> Saya setuju ceritaku dipublikasikan setelah ditinjau admin.</label><p><button onclick="addStory()">Kirim</button> <button class="alt" onclick="$('#dlg').close()">Batal</button></p>`)}
+function addStory(){if(!$('#s4').checked||!$('#s3').value.trim()){toast('Isi cerita dan beri persetujuan dulu ya.');return}if(CLOUD_ON&&!CLOUD){toast('Masih menghubungkan ke server, coba lagi sebentar ya.');return}
+const s={id:newId(),name:$('#s1').value||'Anonim',title:$('#s0').value.trim()||'Cerita baru',uni:$('#s2').value,text:$('#s3').value,st:'pending',likes:0},l={id:newId(),type:'Cerita',name:s.name,contact:'',text:s.text,time:today()+' '+tm()};
+Promise.all([authed?API.req('POST','/api/stories',s):C.story(s),C.lead(l)]).then(()=>{$('#dlg').close();confetti(40);toast('Terima kasih! Ceritamu masuk antrean tinjauan admin 💛');if(authed)poll()}).catch(e=>toast('⚠️ Cerita belum terkirim: '+(e.message||'periksa koneksi')+'. Coba lagi ya.'))}
+function expSend(){const t=$('#e2').value.trim();if(!t){toast('Tulis dulu apa yang ingin kamu temukan ya 🙂');$('#e2').focus();return}if(CLOUD_ON&&!CLOUD){toast('Masih menghubungkan ke server, coba lagi sebentar ya.');return}
+const x={id:newId(),type:'Eksplorasi',name:$('#e1').value||'Tanpa nama',contact:$('#e5').value,text:t,time:today()+' '+tm()};C.lead(x).then(()=>{S.expDone=true;if(!S.jr[1])S.jr[1]=true;confetti(40);rPub();go('#exp')}).catch(e=>toast('⚠️ Belum terkirim: '+(e.message||'periksa koneksi')+'. Coba lagi ya.'))}
+
+/* ---------- Admin ---------- */
+let authed=false;
+function loginDlg(){open_(`<h3>Masuk Admin</h3><label for="lu">Username</label><input id="lu" autocomplete="username"><label for="lp">Password</label><input id="lp" type="password" autocomplete="current-password"><label for="lm">Email admin</label><input id="lm" type="email" autocomplete="email" value="${esc(LS.get('admEmail',''))}" placeholder="admin@gmail.com" onkeydown="if(event.key==\'Enter\')login()"><small>📧 Email ini akan menerima notifikasi setiap ada siswa yang curhat di Ruang Aman.</small><p id="le" class="note hide">Username atau password salah.</p><p><button onclick="login()">Masuk</button> <button class="alt" onclick="$('#dlg').close()">Batal</button></p>`)}
+async function login(){const le=$('#le');le.classList.add('hide');try{const em=$('#lm').value.trim();if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){le.textContent='Masukkan email admin yang valid untuk menerima notifikasi curhat dari siswa.';le.classList.remove('hide');$('#lm').focus();return}
+const r=await API.req('POST','/api/admin/login',{u:$('#lu').value,p:$('#lp').value,email:em});LS.set('admEmail',em);try{sessionStorage.setItem('rs_adm',r.token)}catch(e){}$('#dlg').close();startAdmin()}catch(e){le.textContent=e.message||'Gagal masuk.';le.classList.remove('hide')}}
+function logout(){authed=false;try{sessionStorage.removeItem('rs_adm')}catch(e){}D.leads=[];mode('pub');startStudent()}
+function hdr(){const a=D.msgs.filter(m=>m.unreadA).length,u=D.msgs.filter(m=>m.mine&&m.unreadU).length;$('#admBtn').textContent=pubMode?'Admin'+(authed&&a?' ('+a+' baru)':''):'← Situs';document.title=(authed&&a?'('+a+') ':'')+'RUANG SETARA';const nb=$('#navaman');if(nb)nb.innerHTML='Ruang Aman'+(u?' <span class="dot">'+u+'</span>':'')}
+const who=m=>m.anon?'Anonim':esc(m.name||'Pengguna');
+function inboxHtml(){const l=[...D.msgs].reverse(),c=D.msgs.find(m=>m.id==S.ac)||l[0];if(!c)return'<p>Belum ada pesan. Pesan dari siswa akan muncul di sini secara otomatis.</p>';if(c.unreadA&&!pubMode){c.unreadA=false;C.conv(c.id,{unreadA:false});setTimeout(hdr,0)}setTimeout(()=>{const a=$('#ac');if(a)a.scrollTop=1e9});
+return`<div class="inb"><div>${l.map(m=>{const z=m.thread[m.thread.length-1]||{t:''};return`<button class="conv" aria-current="${m.id==c.id}" onclick="S.ac='${m.id}';rAdm()"><b>${who(m)} #${esc(String(m.id).slice(0,6))}</b> ${m.unreadA?'<span class="dot">baru</span>':''}<br><small>${esc(z.t.slice(0,40))} · ${esc(m.status)}</small></button>`}).join('')}</div><div><p class="pinfo">${[['👤',c.anon?'Anonim':c.name||'Tanpa nama'],['🎂',c.age&&c.age+' tahun'],['📍',c.city],['🏫',c.school],['📧',c.email]].filter(x=>x[1]).map(([i,v])=>`<span>${i} ${i=='📧'?`<a href="mailto:${esc(v)}">${esc(v)}</a>`:esc(v)}</span>`).join('')}</p>${c.email?'':'<p class="ast">Siswa ini tidak mengisi email, balasan hanya terlihat di Ruang Aman.</p>'}${c.mood?`<p class="note">Perasaan pengguna saat menulis: <b>${esc(c.mood)}</b></p>`:''}<div class="chat" id="ac">${c.thread.map(x=>`<div class="m ${x.f=='a'?'u':'a'}">${esc(x.t)}<small>${x.auto?'Otomatis · ':x.f=='a'?'Admin · ':''}${esc(x.time)}</small></div>`).join('')}</div><label for="ar">Balas (Enter untuk kirim)</label><textarea id="ar" rows="2" oninput="S.ar=this.value" onkeydown="if(event.key=='Enter'&&!event.shiftKey){event.preventDefault();aSend('${c.id}')}">${esc(S.ar)}</textarea><p><button onclick="aSend('${c.id}')">Kirim balasan</button> <select aria-label="Status" onchange="setSt('${c.id}',this.value)">${['New','Being Reviewed','Replied','Resolved','Follow Up'].map(s=>`<option ${s==c.status?'selected':''}>${s}</option>`).join('')}</select> <button class="sm danger" onclick="delConv('${c.id}')">🗑️ Hapus chat</button></p></div></div>`}
+function aSend(id){const c=D.msgs.find(m=>m.id==id),v=$('#ar').value.trim();if(!c||!v)return;const m={f:'a',t:v,time:tm(),ts:Date.now()},uu=CLOUD_ON?true:!!c.mine;c.thread.push(m);c.status='Replied';if(uu)c.unreadU=true;C.msg(c,m,{status:'Replied',unreadU:uu,unreadA:false});S.ar='';rAdm();rPub();hdr();toast(c.email?'Balasan terkirim ✓ Siswa juga dikabari lewat email.':'Balasan terkirim ✓');setTimeout(()=>{const a=$('#ar');if(a)a.focus()})}
+function delConv(id){const c=D.msgs.find(m=>m.id==id);if(!c||!confirm('Hapus seluruh chat dengan '+(c.anon?'Anonim':c.name||'siswa ini')+'? Chat yang dihapus tidak bisa dikembalikan.'))return;
+ const done=()=>{D.msgs=D.msgs.filter(m=>m.id!=id);if(S.ac==id)S.ac=null;lastSig='';rAdm();hdr();toast('Chat dihapus ✓')};
+ if(CLOUD_ON&&authed)API.req('DELETE','/api/admin/conv/'+enc(id)).then(done).catch(fbErr);else{done();persist()}}
+function setSt(id,v){const c=D.msgs.find(m=>m.id==id);if(!c)return;c.status=v;C.conv(c.id,{status:v});rAdm()}
+function leadSt(id,v){const l=D.leads.find(l=>l.id==id);if(!l)return;l.st=v;C.leadSt(l.id,v);persist()}
+function dataHtml(){const f=S.df||'Semua',rows=D.leads.filter(x=>f=='Semua'||x.type==f);return`<div class="tabs">${['Semua','Eksplorasi','Cerita'].map(k=>`<button class="chip sm" aria-pressed="${f==k}" onclick="S.df='${k}';rAdm()">${k}</button>`).join('')} <button class="sm" onclick="csv()">Unduh CSV</button></div><p>Data dari form pengunjung (Eksplorasi dan Cerita). Total: <b>${D.leads.length}</b>. Kelola dengan hati-hati dan jangan dibagikan tanpa persetujuan.</p><div class="tw"><table><tr><th>Jenis</th><th>Nama</th><th>Kontak</th><th>Isi</th><th>Waktu</th><th>Tindak lanjut</th></tr>${[...rows].reverse().map(x=>`<tr><td>${esc(x.type)}</td><td>${esc(x.name)}</td><td>${esc(x.contact)}</td><td>${esc(x.text)}</td><td>${esc(x.time)}</td><td><select aria-label="Status" onchange="leadSt('${x.id}',this.value)">${['Baru','Dihubungi','Selesai'].map(s=>`<option ${s==(x.st||'Baru')?'selected':''}>${s}</option>`).join('')}</select></td></tr>`).join('')||'<tr><td colspan=6>Belum ada data.</td></tr>'}</table></div>`}
+async function csv(){const q=v=>'"'+String(v??'').replace(/"/g,'""')+'"',d='Jenis,Nama,Kontak,Isi,Waktu,Status\n'+D.leads.map(x=>[x.type,x.name,x.contact,x.text,x.time,x.st||'Baru'].map(q).join(',')).join('\n');
+try{const b=new Blob(['﻿'+d],{type:'text/csv;charset=utf-8'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='data-ruang-setara.csv';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),1000);toast('CSV diunduh ✓')}catch(e){try{await navigator.clipboard.writeText(d);toast('CSV disalin ke clipboard')}catch(_){alert(d)}}}
+function rFoot(){const f=D.foot;$('#foot').innerHTML=`<div class="fgrid"><div><b class="fl">RUANG SETARA</b><p>Kenali Hakmu, Temukan Potensimu, Wujudkan Mimpimu.</p></div><div><b>Tentang Kami</b><p>${esc(f.about)}</p></div><div><b>Kontak</b><p>${esc(f.contact)}</p></div><div><b>Sosial Media</b><p>${esc(f.social)}</p></div></div><p><small>${esc(f.privacy)}</small></p><p>${esc(f.copy)}</p>`;persist()}
+function resetAll(){if(!confirm(CLOUD?'Kembalikan konten situs (kartu, kampus, beasiswa, tim, beranda, footer) ke data contoh? Pesan, cerita, dan data siswa TIDAK dihapus.':'Kembalikan semua konten ke data contoh? Perubahan yang tersimpan di browser ini akan hilang.'))return;const d=JSON.parse(D0);if(CLOUD){CONTENT.forEach(k=>D[k]=d[k]);C.content();refresh();toast('Konten dikembalikan ke contoh awal');return}Object.keys(D).forEach(k=>delete D[k]);Object.assign(D,d);n=maxId();rPub();rAdm();rFoot();hdr();toast('Data dikembalikan ke contoh awal')}
+function rAdm(){const afid=document.activeElement&&document.activeElement.id,akept=keepForm($('#admin'),/^ar$/);const tabs=['Overview','Inbox','Data','cards','quiz','stories','univ','sch','help','Info','team','Beranda','Footer'],L={Overview:'Overview',Inbox:'Ruang Aman (Chat)',Data:'Data Masuk',Info:'Akses Informasi',Beranda:'Beranda',Footer:'Footer'};
+const nm=k=>L[k]||NAME[k];let b='';const t=S.aTab;
+if(t=='Overview')b=`<div class="grid">${[['Kartu',D.cards.length],['Soal kuis',(D.quiz||[]).length],['Cerita',D.stories.length],['Kampus',D.univ.length],['Beasiswa',D.sch.length],['Pesan baru',D.msgs.filter(m=>m.status=='New').length],['Cerita pending',D.stories.filter(s=>s.st=='pending').length],['Data masuk',D.leads.length],['Total "Menginspirasi"',D.stories.reduce((a,s)=>a+(s.likes||0),0)]].map(([a,v])=>`<div class="card"><div class="stat">${v}</div>${a}</div>`).join('')}</div>
+<div class="card" style="margin-top:16px"><b>Koneksi data</b><p>🟢 <b>Terhubung ke server.</b> Semua isian siswa dari HP/laptop mana pun masuk ke sini otomatis (diperbarui setiap beberapa detik). Biarkan tab ini terbuka untuk mendapat notifikasi pesan baru.</p><button class="sm danger" onclick="resetAll()">Reset ke data contoh</button></div>
+<div class="card" style="margin-top:16px"><b>📧 Email notifikasi admin</b><p>Setiap ada siswa yang curhat di Ruang Aman, notifikasi dikirim ke email berikut. Email otomatis ditambahkan saat admin masuk.</p>${S.mailOn===false?'<p class="note">⚠️ Pengiriman email belum aktif di server. Notifikasi tetap muncul di halaman admin ini.</p>':''}
+${(D.emails||[]).map((e,i)=>`<div class="row"><span>${esc(e)}</span><button class="sm danger" onclick="delEmail(${i})">Hapus</button></div>`).join('')||'<p>Belum ada email.</p>'}
+<label for="newEm">Tambah email</label><div style="display:flex;gap:8px"><input id="newEm" type="email" placeholder="admin2@gmail.com"><button class="sm" onclick="addEmail()">Tambah</button></div>${S.mailOn?`<p style="margin-bottom:0"><button class="sm alt" onclick="testEmail()">✉️ Kirim email uji</button></p>`:''}${S.mailError?`<p class="note">⚠️ Email terakhir gagal terkirim: ${esc(S.mailError)}</p>`:''}</div>`;
+else if(t=='Info')b=`<div class="card"><p>Bagian ini tampil di menu <b>Akses Informasi</b>, sebelum daftar tim.</p><label for="ab1">Judul</label><input id="ab1" value="${esc((D.about||{}).title)}"><label for="ab2">Latar belakang pembuatan website</label><textarea id="ab2" rows="10">${esc((D.about||{}).text)}</textarea><small>Pisahkan paragraf dengan satu baris kosong.</small><p><button onclick="D.about={title:$('#ab1').value,text:$('#ab2').value};C.content();rPub();toast('Latar belakang tersimpan ✓')">Simpan</button></p></div><p>Foto dan profil tim diatur di menu <button class="sm alt" onclick="S.aTab='team';rAdm()">Tim</button>.</p>`;
+else if(t=='Inbox')b=inboxHtml();
+else if(t=='Data')b=dataHtml();
+else if(t=='Footer')b=`<div class="card">${[['about','Tentang Kami','t'],['contact','Kontak'],['social','Sosial media'],['privacy','Privacy Policy (ringkas)','t'],['copy','Copyright']].map(([k,l,ty])=>`<label for="ft${k}">${l}</label>`+(ty?`<textarea id="ft${k}" rows="2">${esc(D.foot[k])}</textarea>`:`<input id="ft${k}" value="${esc(D.foot[k])}">`)).join('')}<p><button onclick="['about','contact','social','privacy','copy'].forEach(k=>D.foot[k]=$('#ft'+k).value);rFoot();C.content();toast('Footer tersimpan ✓')">Simpan</button></p></div>`;
+else if(t=='Beranda')b=`<div class="card"><label for="h1">Headline</label><input id="h1" value="${esc(D.home.h)}"><label for="h2">Subheadline</label><textarea id="h2" rows="2">${esc(D.home.sub)}</textarea><label for="h3">Link tes minat bakat</label><input id="h3" value="${esc(D.home.tes)}"><p><button onclick="D.home.tes=$('#h3').value;D.home.h=$('#h1').value;D.home.sub=$('#h2').value;C.content();rPub();toast('Tersimpan ✓ Lihat di situs.')">Simpan</button></p></div>`;
+else b=(t=='univ'||t=='sch'?`<div class="card" style="margin-bottom:14px"><label for="ki" style="margin-top:0">💌 Teks info di bawah bagian Kampus &amp; Beasiswa</label><textarea id="ki" rows="3">${esc(D.home.kinfo??KINFO0)}</textarea><p style="margin-bottom:0"><button class="sm" onclick="D.home.kinfo=$('#ki').value;C.content();rPub();toast('Teks info tersimpan ✓')">Simpan teks</button></p></div>`:'')+`<p><button onclick="edit('${t}')">+ Tambah ${NAME[t]}</button></p>`+D[t].map(x=>`<div class="row"><span>${(t=='univ'||t=='team')&&imgOk(x.img)?`<img class="thumb" src="${esc(x.img)}" alt="">`:''}<b>${esc(String(x[TITLE[t]]??'').slice(0,90))}</b> <span class="badge">${esc(t=='stories'?x.st:t=='sch'?x.status:(x.on===false||x.verified===false)?'Draft':'Aktif')}</span></span><span><button class="sm alt" onclick="edit('${t}',${x.id})">Edit</button> <button class="sm alt" onclick="dup('${t}',${x.id})">Duplikat</button> ${CLOUD_ON&&t=='stories'?'':`<button class="sm alt" onclick="mv('${t}',${x.id})">↑</button> `}<button class="sm danger" onclick="del('${t}',${x.id})">Hapus</button></span></div>`).join('');
+$('#admin').innerHTML=`<div class="adm"><div class="side" role="tablist">${tabs.map(k=>`<button aria-current="${S.aTab==k}" onclick="S.aTab='${k}';rAdm()">${nm(k)}${k=='Inbox'&&D.msgs.some(m=>m.unreadA)?' <span class="dot">'+D.msgs.filter(m=>m.unreadA).length+'</span>':''}</button>`).join('')}<button class="danger" onclick="logout()">Keluar</button></div><div><h2>${nm(t)}</h2>${b}</div></div>`;if(t==S.lastATab)restoreForm(akept);S.lastATab=t;if(afid){const e=document.getElementById(afid);if(e&&$('#admin').contains(e)){e.focus({preventScroll:true});caretEnd(e)}}persist()}
+function testEmail(){toast('Mengirim email uji…');API.req('POST','/api/admin/test-email',{}).then(r=>{S.mailError=(r.errors||[]).join('\n');rAdm();toast(r.ok?'Email uji terkirim ✓ Cek kotak masuk (dan folder Spam).':'Sebagian email gagal: '+S.mailError)}).catch(fbErr)}
+function saveEmails(l){API.req('PUT','/api/admin/emails',{emails:l}).then(r=>{D.emails=r.emails||[];rAdm();toast('Daftar email tersimpan ✓')}).catch(fbErr)}
+function addEmail(){const v=$('#newEm').value.trim().toLowerCase();if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)){toast('Format email belum benar.');return}saveEmails([...(D.emails||[]),v])}
+function delEmail(i){if(confirm('Hapus email ini dari daftar notifikasi?'))saveEmails((D.emails||[]).filter((_,j)=>j!=i))}
+function edit(t,id){const x=id?D[t].find(o=>o.id==id):{};open_(`<h3>${id?'Edit':'Tambah'} ${NAME[t]}</h3>`+SCH[t].map(([k,l,ty,o],i)=>{const v=x[k];return ty=='img'?`<label for="f${i}">${l}</label><div class="upimg"><img id="pv${i}" alt="Pratinjau gambar" ${imgOk(v)?`src="${esc(v)}"`:'class="hide"'}><div><input type="file" id="fu${i}" accept="image/jpeg,image/png,image/webp,image/gif" onchange="upImg(this,${i})" aria-label="Unggah ${esc(l.toLowerCase())}"><small id="fs${i}">JPG/PNG/WEBP, otomatis diperkecil. Atau tempel link gambar (https://) di bawah.</small><input id="f${i}" value="${esc(v)}" placeholder="https://… atau unggah file di atas" oninput="const p=$('#pv${i}');if(imgOk(this.value)){p.src=this.value;p.classList.remove('hide')}else p.classList.add('hide')"><button type="button" class="sm alt" style="margin-top:6px" onclick="$('#f${i}').value='';$('#pv${i}').classList.add('hide')">Hapus gambar</button></div></div>`:ty=='c'?`<label style="font-weight:400"><input type="checkbox" id="f${i}" style="width:auto" ${v!==false&&(v||!id)?'checked':''}> ${l}</label>`:`<label for="f${i}">${l}</label>`+(ty=='t'?`<textarea id="f${i}" rows="3">${esc(v)}</textarea>`:ty=='s'?`<select id="f${i}">${o.map(z=>`<option ${z==v?'selected':''}>${z}</option>`).join('')}</select>`:`<input id="f${i}" value="${esc(v)}">`)}).join('')+`<p><button onclick="save('${t}',${id||0})">Simpan</button> <button class="alt" onclick="$('#dlg').close()">Batal</button></p>`)}
+/* Unggah gambar (kampus / foto tim): diperkecil di browser (maks 1280px) lalu disimpan di server. */
+function shrink(file){return new Promise(res=>{if(file.type=='image/gif'||!/^image\//.test(file.type))return res(file);const im=new Image(),u=URL.createObjectURL(file);
+ im.onload=()=>{URL.revokeObjectURL(u);const k=Math.min(1,1280/Math.max(im.width,im.height));if(k==1&&file.size<900e3)return res(file);const cv=document.createElement('canvas');cv.width=Math.round(im.width*k);cv.height=Math.round(im.height*k);
+  const g=cv.getContext('2d');g.fillStyle='#fff';g.fillRect(0,0,cv.width,cv.height);g.drawImage(im,0,0,cv.width,cv.height);cv.toBlob(b=>res(b||file),'image/jpeg',.85)};im.onerror=()=>{URL.revokeObjectURL(u);res(file)};im.src=u})}
+async function upImg(inp,i){const f=inp.files&&inp.files[0];if(!f)return;const st=$('#fs'+i),sv=$('#dlg button[onclick^="save"]');st.textContent='⏳ Mengunggah gambar…';if(sv)sv.disabled=true;
+ try{const b=await shrink(f);if(b.size>4*1024*1024)throw new Error('Ukuran gambar maksimal 4 MB.');const r=await fetch('/api/admin/upload',{method:'POST',headers:{'Content-Type':b.type||f.type,Authorization:'Bearer '+API.tok()},body:b});let j={};try{j=await r.json()}catch(e){}
+  if(!r.ok){const e=new Error(j.error||('HTTP '+r.status));e.code=r.status;throw e}$('#f'+i).value=j.url;const p=$('#pv'+i);p.src=j.url;p.classList.remove('hide');st.textContent='✓ Gambar terunggah. Jangan lupa klik Simpan.'}
+ catch(e){st.textContent='⚠️ '+(e.message||'Gagal mengunggah');if(e.code==401)fbErr(e)}finally{if(sv)sv.disabled=false;inp.value=''}}
+function syncT(t,o,delId){if(CONTENT.includes(t))C.content();else if(t=='stories'){if(delId!=null)C.storyDel(delId);else if(o)C.story(o)}}
+function save(t,id){const o=id?D[t].find(x=>x.id==id):{id:newId(),upd:today()};SCH[t].forEach(([k,,ty],i)=>o[k]=ty=='c'?$('#f'+i).checked:$('#f'+i).value);if('upd'in o)o.upd=today();if(!id)D[t].push(o);syncT(t,o);$('#dlg').close();rAdm();rPub();toast('Tersimpan ✓')}
+function dup(t,id){const o={...D[t].find(x=>x.id==id),id:newId()};o[TITLE[t]]+=' (salinan)';if(t=='stories')o.likes=0;D[t].push(o);syncT(t,o);rAdm();rPub()}
+function del(t,id){if(confirm('Hapus item ini?')){D[t]=D[t].filter(x=>x.id!=id);syncT(t,null,id);rAdm();rPub()}}
+function mv(t,id){const a=D[t],i=a.findIndex(x=>x.id==id);if(i>0){[a[i-1],a[i]]=[a[i],a[i-1]];syncT(t);rAdm();rPub()}}
+
+/* ---------- Event global ---------- */
+document.addEventListener('keydown',e=>{if(e.key=='Escape'&&!$('#a11y').classList.contains('hide')){a11yT(false);$('#a11yBtn').focus();return}
+if(!pubMode||$('#dlg').open||/INPUT|TEXTAREA|SELECT/.test(e.target.tagName))return;const h=$('#hak');if(!h)return;const r=h.getBoundingClientRect();
+if(r.top<innerHeight*.6&&r.bottom>innerHeight*.3){if(e.key=='ArrowRight'){S.focus='cNext';nextCard(1)}if(e.key=='ArrowLeft'){S.focus='cPrev';nextCard(-1)}}});
+addEventListener('scroll',onScroll,{passive:true});
+$('#dlg').addEventListener('close',breathStop);
+try{matchMedia('(prefers-color-scheme: dark)').addEventListener('change',()=>{if(!A.theme)applyA()});matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change',applyA)}catch(e){}
+addEventListener('storage',e=>{if(!CLOUD_ON&&e.key=='rs_D'&&e.newValue){try{const d=JSON.parse(e.newValue);Object.assign(D,d);n=maxId();if(pubMode)rPub();rAdm();rFoot();hdr()}catch(_){}}});
+applyA();rPub();rAdm();rFoot();hdr();initCloud();
+</script></body></html>
