@@ -205,7 +205,7 @@ function fbErr(e){console.error(e);if(e&&e.code==401&&authed){toast('Sesi admin 
 const enc=encodeURIComponent;
 const C={
  content(){if(!authed)return;const o={};CONTENT.forEach(k=>o[k]=D[k]);API.req('PUT','/api/admin/content',{data:o}).catch(fbErr)},
- msg(c,m){if(authed){API.req('POST','/api/admin/conv/'+enc(c.id)+'/reply',{t:m.t,time:m.time}).then(()=>poll()).catch(fbErr);return}
+ msg(c,m){if(authed){API.req('POST','/api/admin/conv/'+enc(c.id)+'/reply',{t:m.t,time:m.time}).then(r=>{const info={sent:'Notifikasi diterima server Gmail.',skipped:'Notifikasi dilewati: alamat siswa kosong atau tidak valid.',unconfigured:'Gmail belum dikonfigurasi di proyek ini.',failed:'Notifikasi gagal dikirim. Periksa log SMTP.'};toast('Balasan tersimpan. '+(info[r.notification]||'Status notifikasi tidak tersedia.'));return poll()}).catch(fbErr);return}
   return API.req('POST','/api/conv/'+enc(c.id)+'/msg',{t:m.t,time:m.time,anon:!!c.anon,name:c.name||'',age:c.age||'',city:c.city||'',school:c.school||'',email:c.email||'',mood:c.mood||''})},
  conv(id,fields){if(authed)API.req('PATCH','/api/admin/conv/'+enc(id),fields).catch(fbErr);else if(fields.unreadU===false)API.req('POST','/api/conv/'+enc(id)+'/read').catch(()=>{})},
  lead(x){return API.req('POST','/api/leads',x).then(r=>{if(authed)poll();return r})},
